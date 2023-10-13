@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "z:/clion/2COURSE/full_3_laba/cmake-build-debug"
+			"value" : "z:/GitHub/BSUIR-labs/3 term/cpp/full_3_laba/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Z:/clion/2COURSE/full_3_laba/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "Z:/GitHub/BSUIR-labs/3 term/cpp/full_3_laba/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Z:/clion/2COURSE/full_3_laba"
+			"value" : "Z:/GitHub/BSUIR-labs/3 term/cpp/full_3_laba"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Z:/clion/2COURSE/full_3_laba/cmake-build-debug"
+			"value" : "Z:/GitHub/BSUIR-labs/3 term/cpp/full_3_laba/cmake-build-debug"
 		},
 		{
 			"name" : "full_3_laba_IS_TOP_LEVEL",
@@ -1299,7 +1299,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Z:/clion/2COURSE/full_3_laba"
+			"value" : "Z:/GitHub/BSUIR-labs/3 term/cpp/full_3_laba"
 		}
 	],
 	"kind" : "cache",

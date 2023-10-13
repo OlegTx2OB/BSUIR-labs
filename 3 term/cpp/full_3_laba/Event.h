@@ -2,7 +2,7 @@
 #include <iostream>
 #include <limits>
 #include "CurrentTime.h"
-#include "Menu.h"
+#include "SecondaryFunctions.h"
 
 using namespace std;
 
@@ -41,9 +41,9 @@ public:
         printf("1.Change time   2.Change durationInHours   3.Change isCompleted   4.QUIT:");
         while(true)
         {
-            int choose = Menu::getInt("", 1, 3);
+            int choose = getInt("", 1, 3);
             if (choose == 1) this->setTimeByHand();
-            else if (choose == 2) setDurationInHours(Menu::getInt("durationInHours", 0, 100));
+            else if (choose == 2) setDurationInHours(getInt("durationInHours", 0, 100));
             else if(choose == 3)
             {
                 printf("global: %d\n current: %d\n", getTimeInHours(), this->getTimeInHours());

@@ -14,10 +14,10 @@ void CurrentTime::printTime()
 }
 void CurrentTime::setTimeByHand()
 {
-    this->setYear(Menu::getInt("year", 1900, 2100));
-    this->setMonth(Menu::getInt("month", 1, 12));
-    this->setDay(Menu::getInt("day", 1, 31));
-    this->setHours(Menu::getInt("hours", 0, 23));
+    this->setYear(getInt("year", 1900, 2100));
+    this->setMonth(getInt("month", 1, 12));
+    this->setDay(getInt("day", 1, 31));
+    this->setHours(getInt("hours", 0, 23));
 }
 void CurrentTime::setTimeByRandom()
 {

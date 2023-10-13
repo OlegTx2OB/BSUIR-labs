@@ -9,4 +9,6 @@ add_executable(full_3_laba main.cpp
         Event.cpp
         Event.h
         Menu.cpp
-        Menu.h)
+        Menu.h
+        SecondaryFunctions.cpp
+        SecondaryFunctions.h)
