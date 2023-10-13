@@ -1,0 +1,14 @@
+# ninja log v5
+19	597	7179473461093402	CMakeFiles/full_1_laba_last_try.dir/Cell.cpp.obj	d46ae80f4e2f7ce4
+29	602	7179473461317812	CMakeFiles/full_1_laba_last_try.dir/Menu.cpp.obj	212119d33551dea4
+3	532	7179473460616225	CMakeFiles/full_1_laba_last_try.dir/main.cpp.obj	1b922f675040c4ee
+9	578	7179473461083395	CMakeFiles/full_1_laba_last_try.dir/HashTable.cpp.obj	4528046234dfc1db
+602	702	7179473462223437	full_1_laba_last_try.exe	4821e0965f2a38e0
+28	651	7179352426003018	CMakeFiles/full_1_laba_last_try.dir/operators.cpp.obj	1f12f4df35745859
+2	876	7179473827620325	CMakeFiles/full_1_laba_last_try.dir/main.cpp.obj	1b922f675040c4ee
+9	883	7179473827675840	CMakeFiles/full_1_laba_last_try.dir/HashTable.cpp.obj	4528046234dfc1db
+12	1005	7179473828904930	CMakeFiles/full_1_laba_last_try.dir/Cell.cpp.obj	d46ae80f4e2f7ce4
+29	1023	7179473829075865	CMakeFiles/full_1_laba_last_try.dir/Menu.cpp.obj	212119d33551dea4
+1024	1123	7179473829992603	full_1_laba_last_try.exe	4821e0965f2a38e0
+4	649	7179474985962319	CMakeFiles/full_1_laba_last_try.dir/main.cpp.obj	1b922f675040c4ee
+649	762	7179474987298821	full_1_laba_last_try.exe	4821e0965f2a38e0

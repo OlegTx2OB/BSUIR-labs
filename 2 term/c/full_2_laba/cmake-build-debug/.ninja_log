@@ -1,0 +1,6 @@
+# ninja log v5
+3	809	6996189947137587	CMakeFiles/full_2_laba.dir/main.c.obj	6d9c92b6017aea28
+809	1276	6996189951824119	full_2_laba.exe	28cfb2a2e174e1db
+0	131	7023138646648530	build.ninja	8f70140ebba408f2
+1	451	7024334669857839	CMakeFiles/full_2_laba.dir/main.c.obj	6d00d1f508e58c6f
+452	644	7024334671831257	full_2_laba.exe	e308a09826f84cee

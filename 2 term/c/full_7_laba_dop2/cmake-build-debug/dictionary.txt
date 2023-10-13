@@ -1,0 +1,5 @@
+cat=kot
+king=korol'
+dog=sobaka
+cake=tort,pirozhnoe
+rat=krisa

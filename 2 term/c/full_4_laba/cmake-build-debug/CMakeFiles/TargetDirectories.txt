@@ -1,0 +1,3 @@
+Z:/clion/full_4_laba_v3/cmake-build-debug/CMakeFiles/full_4_laba_v3.dir
+Z:/clion/full_4_laba_v3/cmake-build-debug/CMakeFiles/edit_cache.dir
+Z:/clion/full_4_laba_v3/cmake-build-debug/CMakeFiles/rebuild_cache.dir

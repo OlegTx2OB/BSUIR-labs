@@ -1,0 +1,10 @@
+# ninja log v5
+1	197	7006945909983184	build.ninja	6c256b254389134d
+2	1024	7001487797304558	CMakeFiles/full_3_laba.dir/main.c.obj	d154020be0093dd3
+1034	1563	7001487802704828	full_3_laba.exe	aeec600e7bd4547
+120	1033	7001487797304558	CMakeFiles/full_3_laba.dir/functions.c.obj	cc95086d0db7c94a
+112	1034	7001487797355238	CMakeFiles/full_3_laba.dir/struct_functions.c.obj	794358214219af2
+1	88	7006946622432788	CMakeFiles/full_3_laba.dir/main.c.obj	a574bf8d7c11bb9d
+10	92	7006946622483938	CMakeFiles/full_3_laba.dir/functions.c.obj	3835db18a9a0b2d6
+6	97	7006946622493906	CMakeFiles/full_3_laba.dir/struct_functions.c.obj	cfabfe6688744189
+97	266	7006946624229588	full_3_laba.exe	38d83bfc1fe7e31e
