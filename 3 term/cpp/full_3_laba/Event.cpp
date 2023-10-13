@@ -13,3 +13,10 @@ void Reminder::printEventInfo()
            this->getId(), this->getEventName().c_str());
     this->printTime();
 }
+
+void Task::printEventInfo()
+{
+    printf("|Event id: %d\n|Event type: %s\n|Description: %s\n",
+           this->getId(), this->getEventName().c_str(), this->getDescription().c_str());
+    this->printTime();
+}

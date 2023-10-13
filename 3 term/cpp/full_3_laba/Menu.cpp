@@ -17,12 +17,17 @@ void Menu::printAllEvents(list<Event*> eventList, CurrentTime* currTime)
             Reminder* r = dynamic_cast<Reminder*>(event);
             if(currTime->getTimeInHours() < r->getTimeInHours()) r->printEventInfo();
         }
+        else if(event->getEventName() == "Task")
+        {
+            Task* t = dynamic_cast<Task*>(event);
+            t->printEventInfo();
+        }
     }
 }
 void Menu::addEvent(list<Event*> &eventList)
 {
     printf("Choose event you want to add:\n"
-           "1.meeting   2.reminder   3.TODO:");//todo
+           "1.meeting   2.reminder   3.task:");
     int choose = getInt("",1, 3);
 
     srand(time(nullptr));
@@ -42,6 +47,17 @@ void Menu::addEvent(list<Event*> &eventList)
         if(getInt("isRandomTimeInput",0, 1))reminder->setTimeByRandom();
         else reminder->setTimeByHand();
         eventList.push_back(reminder);
+    }
+    else
+    {
+        printf("Enter description:");
+        string str;
+        cin >> str;
+
+        Task* task = new Task(id, str);
+        if(getInt("isRandomTimeInput",0, 1))task->setTimeByRandom();
+        else task->setTimeByHand();
+        eventList.push_back(task);
     }
 }
 void Menu::getEventById(list<Event*> eventList, CurrentTime* currTime)
@@ -66,10 +82,28 @@ void Menu::getEventById(list<Event*> eventList, CurrentTime* currTime)
             Meeting* m = dynamic_cast<Meeting*>(event);
             m->eventMenu(currTime);
         }
+        else if(event->getEventName() == "Reminder")
+        {
+            Reminder* r = dynamic_cast<Reminder*>(event);
+            r->eventMenu(currTime);
+        }
+        else
+        {
+            Task* t = dynamic_cast<Task*>(event);
+            t->eventMenu(currTime);
+        }
     }
 
 }
 void Menu::delEventById(list<Event*> eventList)
 {
-
+    int id = getInt("id",1000, 9999);
+    for (auto it = eventList.begin(); it != eventList.end(); it++)
+    {
+        if ( (*it)->getId() == id)
+        {
+            eventList.erase(it);
+            break;
+        }
+    }
 }

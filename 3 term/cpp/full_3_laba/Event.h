@@ -37,10 +37,9 @@ public:
 
     void eventMenu(CurrentTime* currTime) override
     {
-        printEventInfo();
-
         while(true)
         {
+            printEventInfo();
             printf("1.Change time   2.Change durationInHours   3.Change isCompleted   4.QUIT:");
             int choose = getInt("", 1, 3);
             if (choose == 1) this->setTimeByHand();
@@ -67,18 +66,15 @@ public:
 
 class Reminder : public Event
 {
-private:
-
 public:
     Reminder(int eventId, int hours = 0, int day = 1, int month = 1, int year = 1900)
             : Event(eventId, hours, day, month, year){}
 
     void eventMenu(CurrentTime* currTime) override
     {
-        printEventInfo();
-
         while(true)
         {
+            printEventInfo();
             printf("1.Change time   2.QUIT:");
             int choose = getInt("", 1, 2);
             if (choose == 1) this->setTimeByHand();
@@ -87,4 +83,32 @@ public:
     }
     void printEventInfo() override;
     string getEventName() override {return "Reminder";}
+};
+
+class Task : public Event
+{
+private:
+    string description;
+public:
+    Task(int eventId, string description = "", int hours = 0, int day = 1, int month = 1, int year = 1900)
+            : Event(eventId, hours, day, month, year), description(description){}
+
+    void eventMenu(CurrentTime* currTime) override
+    {
+        while(true)
+        {
+            printEventInfo();
+            printf("1.Change time   2.Change description   3.QUIT:");
+            int choose = getInt("", 1, 3);
+            if (choose == 1) this->setTimeByHand();
+            else if (choose == 2) cin >> description;
+            else break;
+        }
+    }
+    void printEventInfo() override;
+    string getEventName() override {return "Task";}
+
+    string getDescription(){ return description; }
+    void setDescription(string _description){ description = _description;}
+
 };
