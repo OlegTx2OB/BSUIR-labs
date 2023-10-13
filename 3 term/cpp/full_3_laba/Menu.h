@@ -26,17 +26,17 @@ public:
             int choose = getInt("",1, 7);
             if(choose == 1) currTime->printTime();
             else if(choose == 2) currTime->setTimeByHand();
-            else if(choose == 3) this->printAllEvents(eventList);
+            else if(choose == 3) this->printAllEvents(eventList, currTime);
             else if(choose == 4) this->addEvent(eventList);
-            else if(choose == 5) this->getEventById(eventList);
+            else if(choose == 5) this->getEventById(eventList, currTime);
             else if(choose == 6) this->delEventById(eventList);
             else if(choose == 7) break;
         }
         delete currTime;
     }
 
-    void printAllEvents(list<Event*> eventList);
+    void printAllEvents(list<Event*> eventList, CurrentTime* currTime);
     void addEvent(list<Event*> &eventList);
-    void getEventById(list<Event*> eventList);
+    void getEventById(list<Event*> eventList, CurrentTime* currTime);
     void delEventById(list<Event*> eventList);
 };

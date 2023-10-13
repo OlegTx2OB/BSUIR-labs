@@ -1,5 +1,5 @@
 #include "Menu.h"
-void Menu::printAllEvents(list<Event*> eventList)
+void Menu::printAllEvents(list<Event*> eventList, CurrentTime* currTime)
 {
     while(!eventList.empty())
     {
@@ -12,13 +12,18 @@ void Menu::printAllEvents(list<Event*> eventList)
             Meeting* m = dynamic_cast<Meeting*>(event);
             m->printEventInfo();
         }
+        else if(event->getEventName() == "Reminder")
+        {
+            Reminder* r = dynamic_cast<Reminder*>(event);
+            if(currTime->getTimeInHours() < r->getTimeInHours()) r->printEventInfo();
+        }
     }
 }
 void Menu::addEvent(list<Event*> &eventList)
 {
     printf("Choose event you want to add:\n"
-           "1.meeting   2TODO:");
-    int choose = getInt("",1, 2);
+           "1.meeting   2.reminder   3.TODO:");//todo
+    int choose = getInt("",1, 3);
 
     srand(time(nullptr));
     int id = (rand() % 9000) + 1000;
@@ -31,8 +36,15 @@ void Menu::addEvent(list<Event*> &eventList)
         else meeting->setTimeByHand();
         eventList.push_back(meeting);
     }
+    else if(choose == 2)
+    {
+        Reminder* reminder = new Reminder(id);
+        if(getInt("isRandomTimeInput",0, 1))reminder->setTimeByRandom();
+        else reminder->setTimeByHand();
+        eventList.push_back(reminder);
+    }
 }
-void Menu::getEventById(list<Event*> eventList)
+void Menu::getEventById(list<Event*> eventList, CurrentTime* currTime)
 {
     int id = getInt("id",1000, 9999);
 
@@ -52,7 +64,7 @@ void Menu::getEventById(list<Event*> eventList)
         if(event->getEventName() == "Meeting")
         {
             Meeting* m = dynamic_cast<Meeting*>(event);
-            m->eventMenu();
+            m->eventMenu(currTime);
         }
     }
 
