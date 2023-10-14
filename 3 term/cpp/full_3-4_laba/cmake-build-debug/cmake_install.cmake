@@ -1,4 +1,4 @@
-# Install script for directory: Z:/GitHub/BSUIR-labs/3 term/cpp/full_3_laba
+# Install script for directory: Z:/GitHub/BSUIR-labs/3 term/cpp/full_3-4_laba
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "Z:/GitHub/BSUIR-labs/3 term/cpp/full_3_laba/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "Z:/GitHub/BSUIR-labs/3 term/cpp/full_3-4_laba/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
