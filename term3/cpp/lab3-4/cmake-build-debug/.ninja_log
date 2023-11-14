@@ -1,13 +1,7 @@
 # ninja log v5
-2	277	7189237221842282	CMakeFiles/full_3_laba.dir/CurrentTime.cpp.obj	92bf2b53bd579b26
-10	338	7189237222455083	CMakeFiles/full_3_laba.dir/main.cpp.obj	a7e4f79416c0084b
-13	254	7188930937712663	CMakeFiles/full_3_laba.dir/SecondaryFunctions.cpp.obj	80f1f44f1a57fae9
-5	305	7189237222125225	CMakeFiles/full_3_laba.dir/Menu.cpp.obj	6db5952f7105b101
-339	406	7189237223103436	full_3_laba.exe	54a52c7bb8832bc0
-7	270	7189237221780432	CMakeFiles/full_3_laba.dir/Event.cpp.obj	1eed4ede5764aff0
-72	2712	7191500765502504	CMakeFiles/full_3_laba.dir/SecondaryFunctions.cpp.obj	59dd8dcf53a3cccb
-66	2742	7191500765812344	CMakeFiles/full_3_laba.dir/Event.cpp.obj	a39339257b40437c
-50	2898	7191500767343371	CMakeFiles/full_3_laba.dir/Menu.cpp.obj	b75f525e45e5fc83
 44	2900	7191500767353353	CMakeFiles/full_3_laba.dir/CurrentTime.cpp.obj	4db01ea172012a93
 7	3330	7191500771737686	CMakeFiles/full_3_laba.dir/main.cpp.obj	a9aa5138c90d190f
+72	2712	7191500765502504	CMakeFiles/full_3_laba.dir/SecondaryFunctions.cpp.obj	59dd8dcf53a3cccb
+50	2898	7191500767343371	CMakeFiles/full_3_laba.dir/Menu.cpp.obj	b75f525e45e5fc83
 3331	3637	7191500774760655	full_3_laba.exe	54a52c7bb8832bc0
+66	2742	7191500765812344	CMakeFiles/full_3_laba.dir/Event.cpp.obj	a39339257b40437c
