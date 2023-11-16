@@ -39,17 +39,21 @@ public:
     {
         while(true)
         {
-            cout << "\n===| List menu |=========================================================\n"
-                    "1.addNode   2.isEmpty   3.print   4.deleteAll   5.deleteByValue   6.quit:";
-            int choose = getInt("", 1, 6);
+            cout << "\n===| List menu |======================================================================================\n"
+                    "1.addNode   2.isEmpty   3.print   4.deleteAll   5.deleteByValue   6.divider   7.isElementExist   8.quit:";
+            int choose = getInt("", 1, 8);
             if(choose == 1) list.addNode();
             else if(choose == 2) list.isEmpty();
             else if(choose == 3) list.print();
             else if(choose == 4) list.deleteAll();
             else if(choose == 5) list.deleteByValue();
-            else if(choose == 6) break;
+            else if(choose == 6) divideTwoFloats();
+            else if(choose == 7) list.isElementExist();
+            else if(choose == 8) break;
         }
+        list.deleteAll();
     }
     int getInt(string str, int lowerBound, int upperBound);
+    void divideTwoFloats();
 };
 

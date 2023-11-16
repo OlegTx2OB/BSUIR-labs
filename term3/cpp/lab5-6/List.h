@@ -20,7 +20,7 @@ public:
     void addNode()
     {
         Node<T>* node = new Node<T>;
-        T value = getValue();
+        T value = getValueWithTryCatch();
         node->value = value;
 
         if (this->head == nullptr)
@@ -40,14 +40,11 @@ public:
     void print()
     {
         cout << "Your list: ";
-        if(this->head != nullptr)
+        Node<T>* node = this->head;
+        while(node != nullptr)
         {
-            Node<T>* node = this->head;
-            while(node != nullptr)
-            {
-                cout << node->value << " ";
-                node = node->next;
-            }
+            cout << node->value << " ";
+            node = node->next;
         }
     }
     void deleteAll()
@@ -79,15 +76,27 @@ public:
         if(this->head != nullptr)
         {
             cout << "Enter node value:";
-            T value = getValue();
+            T value = getValueWithTryCatch();
             Node<T>* node = getNodeByValue(value);
             if(node != nullptr) pop(node);
             else cout << "Element is NOT found" << endl;
         }
         else cout << "List is clear" << endl;
     }
+    void isElementExist()
+    {
+        if(this->head != nullptr)
+        {
+            cout << "Enter node value:";
+            T value = getValueWithTryCatch();
+            Node<T>* node = getNodeByValue(value);
+            if(node != nullptr) cout << "Yes";
+            else cout << "No" << endl;
+        }
+        else cout << "List is clear" << endl;
+    }
 
-    T getValue()
+    T getValue()//first v. of getValue without TryCatch, but the lab condition requires exception handling
     {
         T value;
         if (typeid(value) == typeid(int))
@@ -115,6 +124,52 @@ public:
         }
         return value;
     }
+
+    T getValueWithTryCatch()
+    {
+        cout << "enter value:";
+        string str;
+        T value;
+
+        if (typeid(value) == typeid(int))
+        {
+            cin >> str;
+            try
+            {
+                value = std::stoi(str);
+            }
+            catch (exception e)
+            {
+                cout << e.what() << ". your input isn't correct. enter again:";
+                while (!scanf("%d", &value))
+                {
+                    cout << "invalid input. enter int:";
+                    rewind(stdin);
+                }
+            }
+        }
+        else if (typeid(value) == typeid(float))
+        {
+            cin >> str;
+            try
+            {
+                value = std::stof(str);
+            }
+            catch (exception e)
+            {
+                cout << e.what() << " your input isn't correct. enter again:";
+                while (!scanf("%f", &value))
+                {
+                    cout << "invalid input. enter float:";
+                    rewind(stdin);
+                }
+            }
+        }
+        else if (typeid(value) == typeid(string)) cin >> value;
+
+        return value;
+    }
+
     Node<T>* getNodeByValue(T value)
     {
         Node<T>* node = this->head;
