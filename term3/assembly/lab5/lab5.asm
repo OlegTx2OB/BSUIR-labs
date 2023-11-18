@@ -1,105 +1,258 @@
-data segment
-    inputFilePath db "input.txt", 0
-    outputFilePath db "output.txt", 0
-    inputFileIdentifier dw ?
-    outputFileIdentifier dw ?
-    symbolsString db 20 dup("$")
-    buffer db 100 dup("$")
-    
-    mOutputDelete db "Output file deleted", 0Dh, 0Ah, "$"
-    mOutputCreateAndOpen db "Output file recreated and opened", 0Dh, 0Ah, "$"
-    mInputOpen db "Input file opened", 0Dh, 0Ah, "$"
-    mInputSymbolsString db "Input symbols string: $"
-    mInputScanStart db "Input file start scanning", 0Dh, 0Ah, "$"
-    mInputScanEnd db "Input file end scanning", 0Dh, 0Ah, "$"
-    mOutputCheck db "Check output file!", 0Dh, 0Ah, "$"
-    mError db "ERROR", 0Dh, 0Ah, "$"
-    
-    m\n db 0Dh, 0Ah, "$"   
-ends
-stack segment 
-ends
-code segment
-    
+            .model small
+.stack 100h
+.data
+    filename        db 80 dup(0)
+    buffer          db 128 dup(0)
+    buf             db 0    
+    handle          dw 0       
+    counter         dw 0 
+    c               dw 0
+    flag            db 0
+    space_counter   dw 0  
+      
+    closeString     db "Close the file", 0Dh, 0Ah, "$"
+    openFileError   db "Error of open!", 0Dh, 0Ah, "$"  
+    openString      db "Open the file", 0Dh, 0Ah, "$" 
+    errorString     db "Error!", 0Dh, 0Ah, "$"
+    exitString      db "Exit", 0Dh, 0Ah, "$"
+  
+.code 
+   
+;Вывод строки     
 ;=== print ================================================================================================================
 print macro message
     mov ah, 9h
     lea dx, message
     int 21h
-endm
-;=== deleteOutputFile =====================================================================================================
-deleteOutputFile:
-    mov ah, 41h
-    lea dx, outputFilePath
-    int 21h
-    jc error
-    print mOutputDelete
-    ret
-    
-;=== createAndOpenOutputFile ==============================================================================================
-createOutputFile:
-    mov ah, 5Bh
-    mov cx, 7  ;файл можно открывать разным процессам
-    lea dx, outputFilePath
-    int 21h
-    jc error
-    print mOutputCreateAndOpen
-    mov [outputFileIdentifier], ax
-    ret     
-;=== openInputFile ========================================================================================================
-openInputFile:
-   mov ah, 3Dh
-   mov al, 0 ;0 для чтения, 1 для записи
-   lea dx, inputFilePath
-   int 21h
-   jc error
-   print mInputOpen
-   mov [inputFileIdentifier], ax
-   ret
-;=== scanfSymbols =========================================================================================================
-scanfSymbols:
-    print mInputSymbolsString
-    mov ah, 0Ah
-    lea dx, symbolsString
-    int 21h
-    ret
-;=== checkAndWriteInOutput ================================================================================================
-checkAndWriteInOutput:
-;//нужно написать эту функцию. дескриптор input.txt хранится в [inputFileIdentifier], output.txt в [outputFileIdentifier]
-;//нужно в output.exe сохранить строки с символами, которых нет в буфере symbolsString
+endm    
+     
+;Считывание имени файла из ком.строки
+getName proc
+    push ax  ;сохраняем наши регистры
+    push cx
+    push di
+    push si
+    xor cx, cx
+    mov cl, es:[80h]  ;Количество символом в командной строке
+    cmp cl, 0
+    je getNameEnd
+    mov di, 82h       ;Смещение командной строки в блоке PSP
+    lea si, filename
+cicle1:
+    mov al, es:[di]   ;Заносим в al посимвольно значение командной строки
+    cmp al, 0Dh       ;0Dh - товарищ Enter, он же возврат каретки
+    je getNameEnd
+    mov [si], al      ;заносим символ из ком.строки в filename 
+    inc di            ;на следующий символ
+    inc si            
+    jmp cicle1 
+getNameEnd:              
+    pop si            ;Восстанавливаем регистры
+    pop di
+    pop cx
+    pop ax   
+ret
+getName endp
 
-    mov ah, 3Fh  ; функция чтения из файла
-    mov bx, [inputFileIdentifier]  ; дескриптор файла
-    lea dx, buffer  ; адрес буфера для чтения
-    mov cx, 7  ; количество байт для чтения
-    mov di, 01
-    int 21h  ; вызов прерывания 21h
+;=== fopen =================================================================================================================
+fopen  proc 
+   mov ah, 3dh         ;3Dh - открыть существующий файл
+   mov al, 2           ;Режим доступа (чтение и запись)
+   lea dx, filename    ;DS:DX - путь к файлу
+   int 21h             
+   jc openError        
+   mov handle, ax      ;Сохраняем идентификатор     
+ret
+fopen endp
+
+;=== fclose =============================================================================================================
+fclose proc
+   print closeString 
+   mov ah, 3eh         ;3Eh - закрытие файла
+   mov bx, handle      ;Идентификатор
+   int 21h             
+   jc error               
+ret
+fclose endp     
+
+
+checkTab:            
+    cmp BYTE PTR [si], 9
+    jne notWhiteSpace
+    jmp next
     
-    ; Вывод первых 5 символов
-    ;mov ah, 40h  ; функция записи в файл
-    ;mov bx, outputFileIdentifier  ; файловый дескриптор (stdout)
-    ;lea dx, buffer  ; адрес буфера
-    ;mov cx, 5  ; количество байт для вывода
-    ;int 21h
-    
-    ret          
-;=== error ================================================================================================================       
-error:
-    print mError
-    ret      
-;=== main =================================================================================================================    
-start:
-    mov ax, data
-    mov ds, ax
-     
-    call deleteOutputFile
-    call createOutputFile
-    call openInputFile
-    call scanfSymbols
-    call checkAndWriteInOutput 
-     
-    mov ax, 4c00h
+;Удаление пустых строк
+proc space 
+mov counter, 0
+mov space_counter, 0
+i:     
+    mov cx, 128    ;В cx количество байт для чтения
+    mov bx, handle
+    lea dx, buffer  ;В dx адрес текста для считывания
+    mov ah, 3fh     
     int 21h
-    end start
+    jc error
+    xor cx, cx
+    mov cx, ax      ;В сх количество считанных символов
+    jcxz close      ;Конец файла 
     
-ends     
+    push ax
+    xor si, si
+    mov c, 0        ;Счётчик прочитанных символов
+    mov flag, 0
+    lea si, buffer  ;Адрес строки
+    cmp BYTE PTR [si], 0
+    je close     
+            
+        k:  
+            inc c   ;количество символов в строке++
+            cmp  BYTE PTR [si], 10  ;newline
+            je endOfLine            ;Если конец строки
+            cmp  BYTE PTR [si], ' '
+            jne checkTab
+            next:  
+            pop ax
+            cmp ax, c
+            je endOfLine
+            push ax
+            inc si
+            jmp k
+    jmp i
+
+notWhiteSpace:
+    cmp BYTE PTR [si], 13   ;cret
+    je cret    
+    pop ax
+    cmp ax, c
+    je endOfLine
+    push ax
+    mov flag, 1     ;Флаг = 1, значит строка не пустая
+    inc si
+    jmp k  
+
+nonEmpty:
+;перемещаем указатель
+;bx - идентификатор, cx:dx - расстояние, al = 0 - относительно начала
+    xor ax, ax
+    mov bx, handle
+    mov ah, 42h
+    mov dx, counter
+    xor cx, cx
+    int 21h 
+
+;пишем в файл
+;bx - идентификатор, ds:dx - адрес буфера с данными
+;cx - число байтов для записи
+    xor ax, ax
+    mov bx, handle
+    mov ah, 40h
+    mov dx, offset buffer
+    xor cx, cx
+    mov cx, c  
+    int 21h
+ 
+;добавляем к общему числу прочитанных символов число символов, прочитанных
+;из текущей строки  
+    mov ax, counter
+    add ax, c
+    mov counter, ax
+
+    mov ax, counter
+    add ax, space_counter
+    mov counter, ax
+      
+;вновь тягаем указатель, только на этот раз к началу следующей строки      
+    xor ax, ax
+    mov bx, handle
+    mov ah, 42h
+    mov dx, counter
+    xor cx, cx
+    int 21h
+
+    mov ax, counter
+    sub ax, space_counter
+    mov counter, ax
+    
+    jmp i 
+
+isEmpty:
+;обновляем значение считанных символов и символов в пустой строке 
+    mov ax, c
+    add space_counter, ax
+    mov ax, counter
+    add ax, space_counter
+    mov counter, ax
+
+;перемещаем указатель к концу пустой строки   
+    xor ax, ax
+    mov bx, handle
+    mov ah, 42h
+    mov dx, counter
+    xor cx, cx
+    int 21h
+   
+    mov ax, counter
+    sub ax, space_counter
+    mov counter, ax
+
+    jmp i
+
+;=== check is string clear =======================================          
+endOfLine:
+    cmp flag, 1
+    je  nonEmpty
+    jne isEmpty
+        
+cret:
+    pop ax
+    cmp ax, c
+    je endOfLine
+    push ax
+    inc si
+    jmp k
+endp     
+      
+;=== errors ========================================================
+error:
+    print errorString
+    jmp exit  
+         
+openError:
+    print openFileError
+    jmp exit  
+;=== main ============================================================               
+main:         
+    mov ax, @data
+    mov ds, ax
+    
+    call getName  ;Получаем название файла
+    call fopen     ;И открываем его  
+    
+    print openString  
+    
+    call space 
+    call close
+    call fclose
+    
+    jmp exit 
+      
+close:                                                             
+    
+    xor ax, ax
+    mov bx, handle
+    mov ah, 42h 
+    dec counter
+    mov dx, counter
+    xor cx, cx
+    int 21h    
+
+    mov bx, handle
+    mov ah, 40h
+    int 21h
+    ret         
+
+exit:                  
+    print exitString
+    mov ah, 4ch
+    int 21h            
+end main
