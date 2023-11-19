@@ -4,20 +4,26 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QMouseEvent>
+#include "CreateView.h"
+#include "Consts.h"
+#include "ActionButton.h"
+#include "GameScreen.h"
 
 class MainMenuScreen: public QGraphicsView
 {
     Q_OBJECT
+    QGraphicsScene* scene;
 public:
-    QGraphicsScene *scene = new QGraphicsScene();
-    MainMenuScreen() {}
-public slots:
+
+    MainMenuScreen(QGraphicsScene* &scene) : scene(scene) {}
+
+private slots:
     void playButtonPressed();
     void quitButtonPressed();
 
-
 public:
-    void displayMainMenu();
+    void displayMainMenuScreen();
+private:
     void displayBackground();
     void displayStartQuitButtons();
 

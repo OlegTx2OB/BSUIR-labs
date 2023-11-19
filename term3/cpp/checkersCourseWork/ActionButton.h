@@ -3,7 +3,12 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsSceneHoverEvent>
+#include <QBrush>
+#include <QGraphicsRectItem>
+#include <QFont>
 #include "SetParams.h"
+#include "Consts.h"
+#include "CreateView.h"
 
 class ActionButton: public QObject, public QGraphicsRectItem
 {

@@ -1,10 +1,10 @@
 #include "MainMenuScreen.h"
-#include "CreateView.h"
-#include "Consts.h"
-#include "ActionButton.h"
+
 
 void MainMenuScreen::playButtonPressed()
 {
+    scene->clear();
+
 
 }
 void MainMenuScreen::quitButtonPressed()
@@ -12,7 +12,7 @@ void MainMenuScreen::quitButtonPressed()
     close();
 }
 
-void MainMenuScreen::displayMainMenu()
+void MainMenuScreen::displayMainMenuScreen()
 {
     displayBackground();
     displayCheckersTitle();

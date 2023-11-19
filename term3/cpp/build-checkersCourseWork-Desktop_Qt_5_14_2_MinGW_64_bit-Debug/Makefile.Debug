@@ -224,17 +224,18 @@ debug/moc_ActionButton.cpp: ../checkersCourseWork/ActionButton.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneHoverEvent \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qbrush.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QFont \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfont.h \
 		../checkersCourseWork/SetParams.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QAbstractGraphicsShapeItem \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QColor \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qbrush.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QLabel \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qframe.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpalette.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfont.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qsizepolicy.h \
@@ -251,6 +252,20 @@ debug/moc_ActionButton.cpp: ../checkersCourseWork/ActionButton.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsproxywidget.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicswidget.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicslayoutitem.h \
+		../checkersCourseWork/Consts.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QWidget \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsView \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsview.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qscrollarea.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsscene.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsScene \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QMouseEvent \
+		../checkersCourseWork/CreateView.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsTextItem \
 		debug/moc_predefs.h \
 		E:/IDE/qt/5.14.2/mingw73_64/bin/moc.exe
 	E:\IDE\qt\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include Z:/GitHub/BSUIR-labs/term3/cpp/build-checkersCourseWork-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/debug/moc_predefs.h -IE:/IDE/qt/5.14.2/mingw73_64/mkspecs/win32-g++ -IZ:/GitHub/BSUIR-labs/term3/cpp/checkersCourseWork -IE:/IDE/qt/5.14.2/mingw73_64/include -IE:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets -IE:/IDE/qt/5.14.2/mingw73_64/include/QtGui -IE:/IDE/qt/5.14.2/mingw73_64/include/QtANGLE -IE:/IDE/qt/5.14.2/mingw73_64/include/QtCore -I. -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IE:/IDE/qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\checkersCourseWork\ActionButton.h -o debug\moc_ActionButton.cpp
@@ -372,6 +387,27 @@ debug/moc_MainMenuScreen.cpp: ../checkersCourseWork/MainMenuScreen.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsscene.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsScene \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QMouseEvent \
+		../checkersCourseWork/CreateView.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsTextItem \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		../checkersCourseWork/Consts.h \
+		../checkersCourseWork/ActionButton.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsRectItem \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneHoverEvent \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QFont \
+		../checkersCourseWork/SetParams.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QAbstractGraphicsShapeItem \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QColor \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsProxyWidget \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsproxywidget.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicswidget.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicslayoutitem.h \
+		../checkersCourseWork/GameScreen.h \
 		debug/moc_predefs.h \
 		E:/IDE/qt/5.14.2/mingw73_64/bin/moc.exe
 	E:\IDE\qt\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include Z:/GitHub/BSUIR-labs/term3/cpp/build-checkersCourseWork-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/debug/moc_predefs.h -IE:/IDE/qt/5.14.2/mingw73_64/mkspecs/win32-g++ -IZ:/GitHub/BSUIR-labs/term3/cpp/checkersCourseWork -IE:/IDE/qt/5.14.2/mingw73_64/include -IE:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets -IE:/IDE/qt/5.14.2/mingw73_64/include/QtGui -IE:/IDE/qt/5.14.2/mingw73_64/include/QtANGLE -IE:/IDE/qt/5.14.2/mingw73_64/include/QtCore -I. -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IE:/IDE/qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IE:/IDE/qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\checkersCourseWork\MainMenuScreen.h -o debug\moc_MainMenuScreen.cpp
@@ -488,17 +524,18 @@ debug/ActionButton.o: ../checkersCourseWork/ActionButton.cpp ../checkersCourseWo
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneHoverEvent \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qbrush.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QFont \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfont.h \
 		../checkersCourseWork/SetParams.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QAbstractGraphicsShapeItem \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QColor \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qbrush.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QLabel \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qframe.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpalette.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfont.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qsizepolicy.h \
@@ -515,7 +552,6 @@ debug/ActionButton.o: ../checkersCourseWork/ActionButton.cpp ../checkersCourseWo
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsproxywidget.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicswidget.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicslayoutitem.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QFont \
 		../checkersCourseWork/Consts.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QWidget \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsView \
@@ -761,112 +797,7 @@ debug/CreateView.o: ../checkersCourseWork/CreateView.cpp ../checkersCourseWork/C
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\CreateView.o ..\checkersCourseWork\CreateView.cpp
 
-debug/GameScreen.o: ../checkersCourseWork/GameScreen.cpp ../checkersCourseWork/GameScreen.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/QObject \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qobject.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qglobal.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qconfig.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qlogging.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qflags.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qatomic.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qmutex.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qstring.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qchar.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qstringview.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qlist.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qiterator.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qpair.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qvector.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qpoint.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qregexp.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QWidget \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qtguiglobal.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qtgui-config.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgets-config.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qwindowdefs.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qwindowdefs_win.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qmargins.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpaintdevice.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qrect.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qsize.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpalette.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qcolor.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qrgb.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qrgba64.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qbrush.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qmatrix.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpolygon.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qregion.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qline.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qtransform.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpainterpath.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qimage.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpixelformat.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qpixmap.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qhash.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfont.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qsizepolicy.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qcursor.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qkeysequence.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qevent.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qvariant.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qmap.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qdebug.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qtextstream.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qlocale.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qset.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qurl.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qfile.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h
+debug/GameScreen.o: ../checkersCourseWork/GameScreen.cpp ../checkersCourseWork/GameScreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\GameScreen.o ..\checkersCourseWork\GameScreen.cpp
 
 debug/MainMenuScreen.o: ../checkersCourseWork/MainMenuScreen.cpp ../checkersCourseWork/MainMenuScreen.h \
@@ -995,16 +926,18 @@ debug/MainMenuScreen.o: ../checkersCourseWork/MainMenuScreen.cpp ../checkersCour
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneHoverEvent \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QFont \
 		../checkersCourseWork/SetParams.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QAbstractGraphicsShapeItem \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QColor \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QLabel \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsProxyWidget \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsproxywidget.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicswidget.h \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicslayoutitem.h
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicslayoutitem.h \
+		../checkersCourseWork/GameScreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\MainMenuScreen.o ..\checkersCourseWork\MainMenuScreen.cpp
 
 debug/SetParams.o: ../checkersCourseWork/SetParams.cpp ../checkersCourseWork/SetParams.h \
@@ -1247,7 +1180,28 @@ debug/main.o: ../checkersCourseWork/main.cpp E:/IDE/qt/5.14.2/mingw73_64/include
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qframe.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsscene.h \
 		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsScene \
-		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QMouseEvent
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QMouseEvent \
+		../checkersCourseWork/CreateView.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsTextItem \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		../checkersCourseWork/Consts.h \
+		../checkersCourseWork/ActionButton.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsRectItem \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneHoverEvent \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QBrush \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QFont \
+		../checkersCourseWork/SetParams.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QAbstractGraphicsShapeItem \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtGui/QColor \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsProxyWidget \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsproxywidget.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicswidget.h \
+		E:/IDE/qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicslayoutitem.h \
+		../checkersCourseWork/GameScreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\checkersCourseWork\main.cpp
 
 debug/moc_ActionButton.o: debug/moc_ActionButton.cpp 

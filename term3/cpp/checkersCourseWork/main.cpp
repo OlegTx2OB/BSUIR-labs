@@ -1,13 +1,15 @@
 #include <QApplication>
 #include "MainMenuScreen.h"
+#include "GameScreen.h"
 
-MainMenuScreen* mainMenu;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    mainMenu = new MainMenuScreen();
+    QGraphicsScene *scene = new QGraphicsScene();
+    MainMenuScreen* mainMenu = new MainMenuScreen(scene);
+
     mainMenu->show();
-    mainMenu->displayMainMenu();
+    mainMenu->displayMainMenuScreen();
     return a.exec();
 }

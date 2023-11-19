@@ -1,9 +1,5 @@
 #include "ActionButton.h"
-#include <QBrush>
-#include <QGraphicsRectItem>
-#include <QFont>
-#include "Consts.h"
-#include "CreateView.h"
+
 
 
 ActionButton::ActionButton(QString title, int width, int height)
