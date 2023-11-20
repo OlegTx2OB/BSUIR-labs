@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-
 void MainWindow::displayMainMenuScreen()
 {
     displayBackground();
@@ -11,6 +10,10 @@ void MainWindow::displayGameScreen()
 {
     displayCreatorTitle();
     displayRestartQuitButtons();
+    Display* display = new Display();
+    //display->getScene();
+    //QGraphicsView* view = new QGraphicsView(D.getScene());
+    //view->show();
 }
 
 void MainWindow::playButtonPressed()

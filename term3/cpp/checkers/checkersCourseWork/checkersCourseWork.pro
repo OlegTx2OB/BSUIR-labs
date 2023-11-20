@@ -21,14 +21,38 @@ SOURCES += \
     CreateView.cpp \
     MainWindow.cpp \
     SetParams.cpp \
-    main.cpp
+    checkersFiles/Bishop.cpp \
+    checkersFiles/Board.cpp \
+    checkersFiles/Game.cpp \
+    checkersFiles/King.cpp \
+    checkersFiles/Knight.cpp \
+    checkersFiles/Pawn.cpp \
+    checkersFiles/Piece.cpp \
+    checkersFiles/Queen.cpp \
+    checkersFiles/Rook.cpp \
+    checkersFiles/Square.cpp \
+    display.cpp \
+    main.cpp \
+    space.cpp
 
 HEADERS += \
     ActionButton.h \
     Consts.h \
     CreateView.h \
     MainWindow.h \
-    SetParams.h
+    SetParams.h \
+    checkersFiles/Bishop.h \
+    checkersFiles/Board.h \
+    checkersFiles/Game.h \
+    checkersFiles/King.h \
+    checkersFiles/Knight.h \
+    checkersFiles/Pawn.h \
+    checkersFiles/Piece.h \
+    checkersFiles/Queen.h \
+    checkersFiles/Rook.h \
+    checkersFiles/Square.h \
+    display.h \
+    space.h
 
 FORMS +=
 
