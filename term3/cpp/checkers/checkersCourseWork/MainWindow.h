@@ -8,11 +8,6 @@
 #include "Consts.h"
 #include "ActionButton.h"
 
-
-
-#include "display.h"
-
-
 class MainWindow: public QGraphicsView
 {
     Q_OBJECT

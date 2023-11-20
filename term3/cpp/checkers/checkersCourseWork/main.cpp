@@ -5,11 +5,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    a.setApplicationDisplayName("cpp Course Work Tx2OB");
     QGraphicsScene *scene = new QGraphicsScene();
-    MainWindow* mainWindow = new MainWindow(scene);
-    mainWindow->show();
-    mainWindow->displayMainMenuScreen();
+    MainWindow* mainMenu = new MainWindow(scene);
+    mainMenu->show();
+    mainMenu->displayMainMenuScreen();
 
     return a.exec();
 }
