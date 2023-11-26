@@ -20,7 +20,7 @@
     vectorX         dw -2h
     vectorY         dw -1h 
     points          dw 0x0000                                 
-    max_coints      dw 0x0130          ;========================checkWIN=============================             
+    max_coints      dw 0x0130             
     points_str      db 10 dup(?)            
     LEN             dw 0                          
     score           db ' ',0Fh
@@ -41,6 +41,7 @@
 .code 
  start:
     main1:
+;=== MAIN ===============================================================================================================    
     call begin
     call cursorHide 
     call drawTitle 
@@ -102,7 +103,8 @@ logics:
         mov si, offset line_title  
         mov cx, 2
         rep movsb
-        jmp cycle_       
+        jmp cycle_
+;=== ClearScreen =========================================================================================================               
      clearScreen:               
         mov ah, 0x06
         mov al, 0x00              
@@ -187,7 +189,8 @@ logics:
         cmp ax, LEFT
         je  go_left
         ret
-     go_right:                ;wrum-wrum pravo       
+;=== PlatformGoesToTheRightSide =========================================================================================        
+     go_right:                      
         mov bx, [platformLoc]       
         add bx, [size_platform]      
         cmp bx, [endLine]            
@@ -201,7 +204,8 @@ logics:
         add [platformRight], 2
         add [platformLeft], 2        
         jmp movePlatform
-     go_left:                      ;wrum-wrum levo    
+;=== PlatformGoesToTheLeftSide ========================================================================================
+     go_left:                          
         cmp [platformLoc], 0F00h       
         jle movePlatform
         sub [platformLoc], 2
@@ -216,7 +220,8 @@ logics:
         mov es:[bx+1], 044h
         jmp movePlatform 
      moveNull:
-        jmp movePlatform      
+        jmp movePlatform
+;=== DRAW BALL ======================================================================================================              
      drawBall:
         xor bx, bx
         mov bx, [ballLoc]     
@@ -232,16 +237,17 @@ logics:
         mov cx, 2
         cld
         rep movsb 
-        mov es:[bx], SPA   ;can delete to see changes
-        mov es:[bx+1], 0h  ;
+        mov es:[bx], SPA   
+        mov es:[bx+1], 0h  
         ret
+;=== reverse =====================        
      changeVectorY:          
         neg [vectorY]
         jmp checkBorderX
      changeVectorX: 
         neg [vectorX]
         jmp next  
-      
+;=== move Ball =======================================================================================================      
      moveBall:                  
      checkBorderY:               
         cmp [curY], 2           
@@ -348,14 +354,15 @@ logics:
         add [points],10         
         call points_show 
      return:
-        ret      
+        ret
+;=== gameOVER ============================================================================================================             
      gameOver:
         call clearScreen           
         mov ax,0x000A
         mul [size_line]
         add ax,0x0048
         mov di, ax
-        mov si, offset game_over
+        lea si, game_over
         mov cx, 0x0012
         rep movsb 
         push ax
@@ -420,7 +427,7 @@ logics:
         mov [curX], ax              
         add [points],20
         call points_show 
-            
+; === Points ===========================================================================================================            
 points_show:                         
     push bx 
     mov ax, [max_coints]
@@ -502,6 +509,7 @@ endProgram:
     call clearScreen
     mov ax, 4C00h
     int 21h
+;=== Win ============================================================================================    
 win:
         call clearScreen
         mov ax,0x000A
