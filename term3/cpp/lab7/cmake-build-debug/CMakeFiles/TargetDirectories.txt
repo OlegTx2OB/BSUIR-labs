@@ -1,0 +1,3 @@
+Z:/GitHub/BSUIR-labs/term3/cpp/lab7/cmake-build-debug/CMakeFiles/lab7.dir
+Z:/GitHub/BSUIR-labs/term3/cpp/lab7/cmake-build-debug/CMakeFiles/edit_cache.dir
+Z:/GitHub/BSUIR-labs/term3/cpp/lab7/cmake-build-debug/CMakeFiles/rebuild_cache.dir
