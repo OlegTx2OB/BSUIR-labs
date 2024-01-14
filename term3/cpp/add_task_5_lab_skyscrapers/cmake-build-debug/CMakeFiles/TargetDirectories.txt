@@ -1,0 +1,3 @@
+Z:/GitHub/BSUIR-labs/term3/cpp/add_task_5_lab_skyscrapers/cmake-build-debug/CMakeFiles/add_task_5_lab_skyscrapers.dir
+Z:/GitHub/BSUIR-labs/term3/cpp/add_task_5_lab_skyscrapers/cmake-build-debug/CMakeFiles/edit_cache.dir
+Z:/GitHub/BSUIR-labs/term3/cpp/add_task_5_lab_skyscrapers/cmake-build-debug/CMakeFiles/rebuild_cache.dir

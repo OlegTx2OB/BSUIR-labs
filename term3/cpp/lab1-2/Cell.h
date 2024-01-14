@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cstring>
+#include <memory>
 
 using namespace std;
 
@@ -11,11 +12,11 @@ private:
     char* name;
     int age;
 
-    Cell* prev;
-    Cell* next;
+    std::shared_ptr<Cell> prev;
+    std::shared_ptr<Cell> next;
 
 public:
-    Cell(char* login, char* name, int age, Cell* prev, Cell* next) : login(login), name(name), age(age), prev(prev), next(next) {}
+    Cell(char* login, char* name, int age, std::shared_ptr<Cell> prev, std::shared_ptr<Cell> next) : login(login), name(name), age(age), prev(prev), next(next) {}
     Cell() {}
 
     static char* changeLogin();
@@ -74,12 +75,12 @@ public:
     char* getLogin() { return login; }
     char* getName() { return name; }
     int getAge() { return age; }
-    Cell* getPrev() { return prev; }
-    Cell* getNext() { return next; }
+    std::shared_ptr<Cell> getPrev() { return prev; }
+    std::shared_ptr<Cell> getNext() { return next; }
 
     void setLogin(char* login) { this->login = login; }
     void setName(char* name) { this->name = name; }
     void setAge(int age) { this->age = age; }
-    void setPrev(Cell* prev) { this->prev = prev; }
-    void setNext(Cell* next) { this->next = next; }
+    void setPrev(std::shared_ptr<Cell> prev) { this->prev = prev; }
+    void setNext(std::shared_ptr<Cell> next) { this->next = next; }
 };

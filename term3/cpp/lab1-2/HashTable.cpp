@@ -1,4 +1,5 @@
 #include <cstring>
+#include <memory>
 #include "HashTable.h"
 #define MAX_ARRAY_SIZE 1000
 
@@ -13,7 +14,7 @@ int HashTable::hashCalculation(char* password)
     return (hash % MAX_ARRAY_SIZE);
 }
 
-void HashTable::push(HashTable *hashTable, Cell *newCell)
+void HashTable::push(HashTable *hashTable, std::shared_ptr<Cell> newCell)
 {
     if (hashTable->head == nullptr)
     {
@@ -30,13 +31,13 @@ void HashTable::push(HashTable *hashTable, Cell *newCell)
     }
     cout << "New person has been registered\n";
 }
-Cell* HashTable::peek(HashTable hashTable, char* login)
+std::shared_ptr<Cell> HashTable::peek(HashTable hashTable, char* login)
 {
     if (hashTable.head == nullptr)
     {
         return nullptr;
     }
-    Cell* currentCell = hashTable.head;
+    std::shared_ptr<Cell> currentCell = hashTable.head;
     while (currentCell != nullptr)
     {
         if (strcmp(currentCell->getLogin(), login) == 0)
@@ -58,7 +59,7 @@ void HashTable::pop(HashTable *hashTable, char* login)
         return;
     }
 
-    Cell* currentCell = hashTable->head;
+    std::shared_ptr<Cell> currentCell = hashTable->head;
 
     while (currentCell != nullptr)
     {
@@ -82,13 +83,11 @@ void HashTable::pop(HashTable *hashTable, char* login)
             }
             else
             {
-                Cell* prevCell = currentCell->getPrev();
-                Cell* nextCell = currentCell->getNext();
+                std::shared_ptr<Cell> prevCell = currentCell->getPrev();
+                std::shared_ptr<Cell> nextCell = currentCell->getNext();
                 prevCell->setNext(nextCell);
                 nextCell->setPrev(prevCell);
             }
-
-            delete currentCell;
             neededUserDeleted = true;
             break;
         }

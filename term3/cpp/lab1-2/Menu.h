@@ -25,7 +25,7 @@ public:
             else break;
         }
     }
-    void userMenu(Cell *newCell)
+    void userMenu(std::shared_ptr<Cell> newCell)
     {
         while (true)
         {

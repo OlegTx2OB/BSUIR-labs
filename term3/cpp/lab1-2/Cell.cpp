@@ -19,6 +19,7 @@ char* Cell::changeName()
     return str;
 }
 
-bool Cell::operator==(char* _login)  {
+bool Cell::operator==(char* _login)
+{
     return strcmp(this->getLogin() , _login);
 }

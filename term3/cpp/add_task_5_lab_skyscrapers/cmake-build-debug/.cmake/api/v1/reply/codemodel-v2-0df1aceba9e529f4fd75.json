@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "add_task_5_lab_skyscrapers",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "add_task_5_lab_skyscrapers::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-add_task_5_lab_skyscrapers-Debug-8b0e6da7d01fac3c8a66.json",
+					"name" : "add_task_5_lab_skyscrapers",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "Z:/GitHub/BSUIR-labs/term3/cpp/add_task_5_lab_skyscrapers/cmake-build-debug",
+		"source" : "Z:/GitHub/BSUIR-labs/term3/cpp/add_task_5_lab_skyscrapers"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

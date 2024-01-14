@@ -1,3 +1,4 @@
+#include <memory>
 #include "Menu.h"
 #define MAX_STR_LEN 64
 #define MAX_ARRAY_SIZE 1000
@@ -42,22 +43,22 @@ void Menu::logIn(HashTable* hashTableArray)
     char* login = getLoginOrPassword();
     int hash = HashTable::hashCalculation(getLoginOrPassword());
     HashTable& hashTable = hashTableArray[hash];
-    Cell* cellLink = HashTable::peek(hashTable, login);
+    std::shared_ptr<Cell> cellLink = HashTable::peek(hashTable, login);
     if (cellLink == nullptr)
     {
         cout << "Person is not found\n";
     }
     else
     {
-        Cell& cell = *cellLink;
-        userMenu(&cell);
+        std::shared_ptr<Cell> cell = cellLink;
+        userMenu(cell);
     }
 }
 void Menu::registerNewAccount(HashTable* hashTableArray)
 {
     char* login = getLoginOrPassword();
     int hash = HashTable::hashCalculation(getLoginOrPassword());
-    Cell* newCell = new Cell(login, undefinedName(),0, nullptr, nullptr);
+    std::shared_ptr<Cell> newCell(new Cell(login, undefinedName(), 0, nullptr, nullptr));
     HashTable::push(&hashTableArray[hash], newCell);
     HashTable& hashTable = hashTableArray[hash];
     userMenu(newCell);

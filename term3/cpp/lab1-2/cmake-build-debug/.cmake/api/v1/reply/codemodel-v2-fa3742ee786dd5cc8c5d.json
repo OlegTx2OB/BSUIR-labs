@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "Z:/clion/2COURSE/full_1_laba_last_try/cmake-build-debug",
-		"source" : "Z:/clion/2COURSE/full_1_laba_last_try"
+		"build" : "Z:/GitHub/BSUIR-labs/term3/cpp/lab1-2/cmake-build-debug",
+		"source" : "Z:/GitHub/BSUIR-labs/term3/cpp/lab1-2"
 	},
 	"version" : 
 	{
