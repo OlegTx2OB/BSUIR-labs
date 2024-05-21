@@ -1,0 +1,3 @@
+Z:/GitHub/BSUIR-labs/term4/apk/lab5/cmake-build-debug/CMakeFiles/lab5.dir
+Z:/GitHub/BSUIR-labs/term4/apk/lab5/cmake-build-debug/CMakeFiles/edit_cache.dir
+Z:/GitHub/BSUIR-labs/term4/apk/lab5/cmake-build-debug/CMakeFiles/rebuild_cache.dir

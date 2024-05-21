@@ -181,7 +181,7 @@ bool findMove(Position& pos, const vector<vector<set<int>>> &possible)
             break;
         }
     }
-// затем продолжаем поиск с следующей строки, если это не последняя
+// затем продолжаем поиск со следующей строки, если это не последняя
     if (!flagExitSearch && pos.y < BOARD_SIZE - 1)
     {
         pos.x = 0;
@@ -330,6 +330,7 @@ bool isMoveOK(Position pos, const std::vector<int> clues)
 }
 void solveOutput(std::vector<std::vector<int>> kataSolution)
 {
+
     for(int n = 0; n < 6; n++)
     {
         for(int m = 0; m < 6; m++)
@@ -348,10 +349,10 @@ int main()
 {
     std::vector<int> clues =
         {
-            0, 0, 0, 2, 2, 0,
-            0, 0, 0, 6, 3, 0,
-            0, 4, 0, 0, 0, 0,
-            4, 4, 0, 3, 0, 0
+            0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0
         };
 
 

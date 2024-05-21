@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp12"
+    android:layout_margin="@dimen/dp4"
+    android:textColor="?attr/colorOnSurface"
+    android:text="Вы реально сюда заглядываете?"
+    android:backgroundTint="?attr/colorSurfaceContainer"/>

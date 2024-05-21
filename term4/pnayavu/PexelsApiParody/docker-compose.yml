@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db
+    ports:
+      - '5432:5432'
+    networks:
+      - text-network
+
+  app:
+    image: pexelsapiparody
+    ports:
+      - "8080:8080"
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: root
+      DB_NAME: db
+      DB_HOST: localhost:5432
+    depends_on:
+      - db
+    networks:
+      - text-network
+
+networks:
+  text-network:
+    driver: bridge

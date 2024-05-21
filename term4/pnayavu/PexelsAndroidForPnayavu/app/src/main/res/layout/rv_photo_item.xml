@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/rv_home_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:riv_corner_radius="@dimen/dp24"
+        android:layout_margin="@dimen/dp8">
+    </com.makeramen.roundedimageview.RoundedImageView>
+
+    <TextView
+        android:id="@+id/author_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp24"
+        android:text="Хочу пива"
+        android:textSize="@dimen/medium_text"
+        android:background="?attr/colorTransparentSurface"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_margin="@dimen/dp8"/>
+
+</FrameLayout>

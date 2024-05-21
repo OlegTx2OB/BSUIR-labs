@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">InnowisePexelsTestApp</string>
+    <string name="favorite">Favorite</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="download">Download</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="you_havent_saved_anything_yet">You haven\'t saved anything yet</string>
+    <string name="explore">Explore</string>
+    <string name="try_again">Try again</string>
+    <string name="saved">Saved</string>
+    <string name="deleted">Deleted</string>
+    <string name="error_while_getting_categories">Error while getting categories</string>
+    <string name="downloading">Downloading</string>
+</resources>

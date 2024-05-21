@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="Theme.InnowisePexelsTestApp" parent="Base.Theme.InnowisePexelsTestApp">
+        <item name="colorSurface">@color/black</item> <!-- Цвет фона -->
+        <item name="colorSurfaceContainer">@color/darktheme_dark_gray</item> <!-- Цвет сard view контейнеров на фоне -->
+        <item name="colorOnSurface">@color/white</item> <!-- Цвет текста -->
+        <item name="colorFaint">@color/darktheme_gray</item>
+        <item name="colorTertiary">@color/red</item>
+        <item name="colorTransparentSurface">@color/transparent_black</item>
+        <item name="colorSecondary">@color/red</item>
+
+    </style>
+
+</resources>

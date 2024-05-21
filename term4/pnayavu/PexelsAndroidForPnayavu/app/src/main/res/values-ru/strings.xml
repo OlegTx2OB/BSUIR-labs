@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">InnowisePexelsTestApp</string>
+    <string name="favorite">Избранное</string>
+    <string name="home">Главная</string>
+    <string name="search">Поиск</string>
+    <string name="download">Скачать</string>
+    <string name="bookmarks">Избранное</string>
+    <string name="you_havent_saved_anything_yet">Вы еще ничего не добавили</string>
+    <string name="explore">Добавить</string>
+    <string name="try_again">Повторить попытку</string>
+    <string name="saved">Сохранено</string>
+    <string name="deleted">Удалено</string>
+    <string name="error_while_getting_categories">Ошибка при получении категорий</string>
+    <string name="downloading">Скачивается...</string>
+</resources>

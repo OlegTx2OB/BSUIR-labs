@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Для ненажатого состояния в светлой теме
+    <item android:drawable="@drawable/ic_light_home_unactive" android:state_checked="false" android:theme="@style/Base.Theme.InnowisePexelsTestApp" />
+    <item android:drawable="@drawable/ic_light_home_active" android:state_checked="true" android:theme="@style/Base.Theme.InnowisePexelsTestApp" />
+    <item android:drawable="@drawable/ic_home_inactive" android:state_checked="false" android:theme="@style/Base.Theme.InnowisePexelsTestApp" />
+
+    <item android:drawable="@drawable/ic_dark_home_active" android:state_checked="true" android:theme="@style/Base.Theme.InnowisePexelsTestApp" />
+    -->
+</selector>
