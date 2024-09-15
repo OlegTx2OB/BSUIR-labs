@@ -1,0 +1,3 @@
+C:/Z/GitHub/BSUIR-labs/term5/iiuvm/lab1/lab1CLion/cmake-build-debug/CMakeFiles/lab1.dir
+C:/Z/GitHub/BSUIR-labs/term5/iiuvm/lab1/lab1CLion/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Z/GitHub/BSUIR-labs/term5/iiuvm/lab1/lab1CLion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
