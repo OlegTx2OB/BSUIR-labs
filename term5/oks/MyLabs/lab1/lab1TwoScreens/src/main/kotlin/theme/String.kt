@@ -1,11 +1,13 @@
 package theme
 
+const val strComApp1 = "Communication program"
+const val strComApp2 = "Communication program"
 const val strEnterText = "Enter text"
 const val strEnterSomething = "Enter smth"
-const val strInputBox = "Input"
-const val strOutputBox = "Output"
-const val strControlBox = "Control"
-const val strStateBox = "State"
+const val strInputBox = "Input window"
+const val strOutputBox = "Output window"
+const val strControlBox = "Control window"
+const val strStateBox = "State window"
 const val strSenderPortNumber = "Sender port number"
 const val strReceiverPortNumber = "Receiver port number"
 const val strSuccessful = "Successful"

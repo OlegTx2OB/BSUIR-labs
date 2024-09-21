@@ -4,9 +4,7 @@ import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 
-// Set of Material typography styles to start with
 val typography = Typography(
-
     h1 = TextStyle(
         color = lightGray,
         fontWeight = FontWeight.W400,
@@ -30,5 +28,4 @@ val typography = Typography(
         fontWeight = FontWeight.W500,
         fontSize = sp14,
     ),
-
 )

@@ -17,16 +17,16 @@ class MainViewModel : ViewModel() {
     private val _sReceiverText = mutableStateOf("")
     private val _sBaudRate = mutableStateOf(BAUD_RATE)
     private val _sSymbolsCount = mutableStateOf(0)
-    private val _selectedReceiverCom = mutableStateOf(RECEIVER_NAME)
-    private val _selectedSenderCom = mutableStateOf(SENDER_NAME)
+    private val _sSelectedReceiverCom = mutableStateOf(RECEIVER_NAME)
+    private val _sSelectedSenderCom = mutableStateOf(SENDER_NAME)
 
     val sOutputText: State<String> = _sOutputText
     val sSenderText: State<String> = _sSenderText
     val sReceiverText: State<String> = _sReceiverText
     val sBaudRate: State<Int> = _sBaudRate
     val sSymbolsCount: State<Int> = _sSymbolsCount
-    val selectedReceiverCom: State<String> = _selectedReceiverCom
-    val selectedSenderCom: State<String> = _selectedSenderCom
+    val sSelectedReceiverCom: State<String> = _sSelectedReceiverCom
+    val sSelectedSenderCom: State<String> = _sSelectedSenderCom
 
     private var comSender = createComPort(SENDER_NAME)
     private var comReceiver = createComPort(RECEIVER_NAME)
@@ -52,6 +52,12 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    private fun createComPort(name: String): SerialPort {
+        val newCom = SerialPort.getCommPort(name)
+        newCom.baudRate = BAUD_RATE
+        return newCom
+    }
+
     fun onTextFieldTextChanged(oldText: String, newText: String) {
         if (newText.length > oldText.length) {
             comSender.outputStream.write(newText.last().code)
@@ -60,21 +66,15 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    private fun createComPort(name: String): SerialPort {
-        val newCom = SerialPort.getCommPort(name)
-        newCom.baudRate = BAUD_RATE
-        return newCom
-    }
-
     fun setSelectedReceiverCom(name: String) {
-        _selectedReceiverCom.value = name
+        _sSelectedReceiverCom.value = name
         comReceiver.closePort()
         comReceiver = createComPort(name)
         setTextIsReceiverComOpened()
     }
 
     fun setSelectedSenderCom(name: String) {
-        _selectedSenderCom.value = name
+        _sSelectedSenderCom.value = name
         comSender.closePort()
         comSender = createComPort(name)
         setTextIsSenderComOpened()

@@ -104,6 +104,7 @@ fun ControlBox(viewModel: MainViewModel) {
     ) {
         Text(strControlBox, modifier = Modifier.padding(top = dp16), style = typography.h2)
         ComPortComboBox(
+            viewModel,
             viewModel.selectedSenderCom,
             viewModel.sSenderText,
             strSenderPortNumber
@@ -111,6 +112,7 @@ fun ControlBox(viewModel: MainViewModel) {
             viewModel.setSelectedSenderCom(comName)
         }
         ComPortComboBox(
+            viewModel,
             viewModel.selectedReceiverCom,
             viewModel.sReceiverText,
             strReceiverPortNumber
@@ -147,13 +149,14 @@ fun StateBox(viewModel: MainViewModel) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ComPortComboBox(
+    viewModel: MainViewModel,
     selectedCom: State<String>,
     isPortOpenedText: State<String>,
     hint: String,
     callback: (port: String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    val comPorts = listOf("COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8")
+    val comPorts = viewModel.returnNewComList()
     Row (modifier = Modifier.padding(top = dp16, start = dp16, end = dp16)) {
         ExposedDropdownMenuBox(
             expanded = expanded,

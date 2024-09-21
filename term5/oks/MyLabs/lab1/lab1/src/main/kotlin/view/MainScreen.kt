@@ -16,26 +16,18 @@ import viewModel.MainViewModel
 fun MainScreen(viewModel: MainViewModel) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.weight(1f)) {
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
+            Column(modifier = Modifier.weight(1f)) {
                 InputBox(viewModel)
             }
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
+            Column(modifier = Modifier.weight(1f)) {
                 OutputBox(viewModel)
             }
         }
         Row(modifier = Modifier.weight(1f)) {
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
+            Column(modifier = Modifier.weight(1f)) {
                 ControlBox(viewModel)
             }
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
+            Column(modifier = Modifier.weight(1f)) {
                 StateBox(viewModel)
             }
         }
@@ -69,7 +61,6 @@ fun InputBox (viewModel: MainViewModel) {
                 cursorColor = white,
             )
         )
-
     }
 }
 
@@ -85,8 +76,7 @@ fun OutputBox(viewModel: MainViewModel) {
         ) {
             Text(
                 text = viewModel.sOutputText.value,
-                modifier = Modifier
-                    .padding(dp16).fillMaxSize(),
+                modifier = Modifier.padding(dp16).fillMaxSize(),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 4,
                 textAlign = TextAlign.Center,
@@ -104,14 +94,14 @@ fun ControlBox(viewModel: MainViewModel) {
     ) {
         Text(strControlBox, modifier = Modifier.padding(top = dp16), style = typography.h2)
         ComPortComboBox(
-            viewModel.selectedSenderCom,
+            viewModel.sSelectedSenderCom,
             viewModel.sSenderText,
             strSenderPortNumber
         ) { comName ->
             viewModel.setSelectedSenderCom(comName)
         }
         ComPortComboBox(
-            viewModel.selectedReceiverCom,
+            viewModel.sSelectedReceiverCom,
             viewModel.sReceiverText,
             strReceiverPortNumber
         ) { comName ->
@@ -143,6 +133,7 @@ fun StateBox(viewModel: MainViewModel) {
         }
     }
 }
+
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

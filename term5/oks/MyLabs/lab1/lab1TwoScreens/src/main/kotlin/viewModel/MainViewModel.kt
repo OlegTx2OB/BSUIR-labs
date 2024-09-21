@@ -10,7 +10,7 @@ const val SENDER_NAME = "COM1"
 const val RECEIVER_NAME = "COM2"
 const val BAUD_RATE = 9600
 
-class MainViewModel : ViewModel() {
+class MainViewModel {
 
     private val _sOutputText = mutableStateOf("")
     private val _sSenderText = mutableStateOf("")
@@ -28,20 +28,20 @@ class MainViewModel : ViewModel() {
     val selectedReceiverCom: State<String> = _selectedReceiverCom
     val selectedSenderCom: State<String> = _selectedSenderCom
 
-    private var comSender = createComPort(SENDER_NAME)
-    private var comReceiver = createComPort(RECEIVER_NAME)
+    private lateinit var comSender: SerialPort
+    private lateinit var comReceiver: SerialPort
 
-    init {
-        setTextIsSenderComOpened()
-        setTextIsReceiverComOpened()
-    }
-
-    fun onTextFieldTextChanged(oldText: String, newText: String) {
+    fun onTextFieldTextChanged(oldText: String, newText: String): Boolean {
         if (newText.length > oldText.length) {
             comSender.outputStream.write(newText.last().code)
-            _sOutputText.value += comReceiver.inputStream.read().toChar()
-            _sSymbolsCount.value++
+            return true
         }
+        return false
+    }
+
+    fun getComSymbol() {
+        _sOutputText.value += comReceiver.inputStream.read().toChar()
+        _sSymbolsCount.value++
     }
 
     fun setSelectedReceiverCom(name: String) {
@@ -56,6 +56,22 @@ class MainViewModel : ViewModel() {
         comSender.closePort()
         comSender = createComPort(name)
         setTextIsSenderComOpened()
+    }
+
+    fun returnNewComList(): MutableList<String> {
+        val comList = mutableListOf<String>()
+        for (i in 1..254) {
+            comList.add("COM$i")
+        }
+        return comList
+    }
+
+    fun returnNewComListWithoutPairOf(comSenderName: String = ""): List<String> {
+        val comReceiverName = "COM${comSenderName[3].digitToInt() + 1}"
+        val newList = returnNewComList()
+        newList.remove(comSenderName)
+        newList.remove(comReceiverName)
+        return newList
     }
 
     private fun createComPort(name: String): SerialPort {
