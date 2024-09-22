@@ -1,0 +1,18 @@
+package theme
+
+const val strAppName = "Communication program"
+const val strEnterText = "Enter text"
+const val strEnterSomething = "Enter smth"
+const val strInputBox = "Input window"
+const val strOutputBox = "Output window"
+const val strControlBox = "Control window"
+const val strStateBox = "State window"
+const val strSenderPortNumber = "Sender port number"
+const val strReceiverPortNumber = "Receiver port number"
+const val strSuccessful = "Successful"
+const val strFailed = "Failed"
+const val strLoading = "Loading..."
+const val strBaudRate = "Baud rate: "
+const val strSymbolsTransferredCount = "Transferred symbols count: "
+const val strNotSelected = "Not selected"
+const val strClear = ""
