@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fazecast.jSerialComm.SerialPort
+import com.fazecast.jSerialComm.SerialPortDataListener
+import com.fazecast.jSerialComm.SerialPortEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import theme.*
@@ -13,38 +15,45 @@ const val BAUD_RATE = 9600
 
 class MainViewModel : ViewModel() {
 
+    private val _sIsInputTextFieldVisible = mutableStateOf(false)
+    private val _sIsOutputTextVisible = mutableStateOf(false)
     private val _sOutputText = mutableStateOf("")
     private val _sSelectedSenderComName = mutableStateOf(strNotSelected)
     private val _sSelectedReceiverComName = mutableStateOf(strNotSelected)
     private val _sSenderComStateText = mutableStateOf(strClear)
     private val _sReceiverComStateText = mutableStateOf(strClear)
     private val _sBaudRate = mutableStateOf(BAUD_RATE)
-    private val _sSymbolsCount = mutableStateOf(0)
+    private val _sTransferredSymbolsCount = mutableStateOf(0)
     private val _sComList = mutableStateOf(returnNewComList())
 
     private var comSender: SerialPort? = null
     private var comReceiver: SerialPort? = null
 
 
-    sealed interface InputState {
-        fun onTextFieldValueChange(oldText: String, newText: String): String
-    }
-    sealed interface OutputState {
-        val sOutputText: State<String>
-    }
-    sealed interface ControlState {
-        val sSelectedSenderComName: State<String>
-        val sSelectedReceiverComName: State<String>
-        val sSenderComStateText: State<String>
-        val sReceiverComStateText: State<String>
-        val sComList: State<List<String>>
+    sealed interface MainState {
+        sealed interface Input {
+            val sIsInputTextFieldVisible: State<Boolean>
 
-        fun setSelectedSenderCom(name: String)
-        fun setSelectedReceiverCom(name: String)
-    }
-    sealed interface StateState {
-        val sBaudRate: State<Int>
-        val sSymbolsCount: State<Int>
+            fun onTextFieldValueChange(oldText: String, newText: String): String
+        }
+        sealed interface Output {
+            val sIsOutputTextVisible: State<Boolean>
+            val sOutputText: State<String>
+        }
+        sealed interface Control {
+            val sSelectedSenderComName: State<String>
+            val sSelectedReceiverComName: State<String>
+            val sSenderComStateText: State<String>
+            val sReceiverComStateText: State<String>
+            val sComList: State<List<String>>
+
+            fun setSelectedSenderCom(name: String)
+            fun setSelectedReceiverCom(name: String)
+        }
+        sealed interface Status {
+            val sBaudRate: State<Int>
+            val sTransferredSymbolsCount: State<Int>
+        }
     }
 
 
@@ -69,28 +78,40 @@ class MainViewModel : ViewModel() {
     }
 
     private fun sendCharIntoCom(char: Char) {
-        TODO()
+        comSender!!.outputStream.write(char.code)
     }
 
-    private fun setTextIsSenderComOpened() {
-        _sSenderComStateText.value = strLoading
-        _sSenderComStateText.value = if (comSender!!.openPort()) {
-            strSuccessful
+    private fun updateUiOnSenderComOpening() {
+        if (comSender!!.isOpen) {
+            _sIsInputTextFieldVisible.value = true
+            _sSenderComStateText.value = strSuccessful
         } else {
-            strFailed
+            _sIsInputTextFieldVisible.value = false
+            _sSenderComStateText.value = strFailed
         }
     }
 
-    private fun setTextIsReceiverComOpened() {
-        _sReceiverComStateText.value = strLoading
-        _sReceiverComStateText.value = if (comReceiver!!.openPort()) {
-            strSuccessful
+    private fun updateUiOnReceiverComOpening() {
+        if (comReceiver!!.isOpen) {
+            _sIsOutputTextVisible.value = true
+            _sReceiverComStateText.value = strSuccessful
         } else {
-            strFailed
+            _sIsOutputTextVisible.value = false
+            _sReceiverComStateText.value = strFailed
         }
     }
 
-    inner class InputStateImpl : InputState {
+    private fun resetCom(com: SerialPort?, newName: String): SerialPort {
+        com?.closePort()
+        val newCom = SerialPort.getCommPort(newName)
+        newCom.baudRate = _sBaudRate.value
+        newCom.openPort()
+        return newCom
+    }
+
+    inner class InputStateImpl : MainState.Input {
+        override val sIsInputTextFieldVisible: State<Boolean> = _sIsInputTextFieldVisible
+        
         override fun onTextFieldValueChange(oldText: String, newText: String): String {
             return if (
                 oldText.isEmpty()
@@ -106,11 +127,12 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    inner class OutputStateImpl : OutputState {
+    inner class OutputStateImpl : MainState.Output {
+        override val sIsOutputTextVisible: State<Boolean> = _sIsOutputTextVisible
         override val sOutputText: State<String> = _sOutputText
     }
 
-    inner class ControlStateImpl : ControlState {
+    inner class ControlStateImpl : MainState.Control {
         override val sSelectedSenderComName: State<String> = _sSelectedSenderComName
         override val sSelectedReceiverComName: State<String> = _sSelectedReceiverComName
         override val sSenderComStateText: State<String> = _sSenderComStateText
@@ -118,29 +140,46 @@ class MainViewModel : ViewModel() {
         override val sComList: State<List<String>> = _sComList
 
         override fun setSelectedSenderCom(name: String) {
-            _sComList.value = returnNewComListWithoutPairOf(name, true)
+            _sSenderComStateText.value = strLoading
             _sSelectedSenderComName.value = name
-            comSender = SerialPort.getCommPort(name)
-            comSender!!.baudRate = _sBaudRate.value
             viewModelScope.launch(Dispatchers.IO) {
-                setTextIsSenderComOpened()
+                comSender = resetCom(comSender, name)
+                updateUiOnSenderComOpening()
+                _sComList.value = returnNewComList()//returnNewComListWithoutPairOf(name, true)
             }
         }
 
         override fun setSelectedReceiverCom(name: String) {
-            _sComList.value = returnNewComListWithoutPairOf(name, false)
+            _sReceiverComStateText.value = strLoading
             _sSelectedReceiverComName.value = name
-            comReceiver = SerialPort.getCommPort(name)
-            comReceiver!!.baudRate = _sBaudRate.value
             viewModelScope.launch(Dispatchers.IO) {
-                setTextIsReceiverComOpened()
+                comReceiver = resetCom(comReceiver, name)
+                comReceiver!!.addDataListener(object : SerialPortDataListener {
+                    override fun getListeningEvents(): Int {
+                        return SerialPort.LISTENING_EVENT_DATA_AVAILABLE
+                    }
+
+                    override fun serialEvent(event: SerialPortEvent) {
+                        if (event.eventType == SerialPort.LISTENING_EVENT_DATA_AVAILABLE) {
+                            while (comReceiver!!.bytesAvailable() > 0) {
+                                val receivedByte = comReceiver!!.inputStream.read()
+                                if (receivedByte != -1) { // Проверяем, что чтение прошло успешно
+                                    _sOutputText.value += receivedByte.toChar() // Добавляем полученный символ в строку
+                                    _sTransferredSymbolsCount.value++
+                                }
+                            }
+                        }
+                    }
+                })
+                updateUiOnReceiverComOpening()
+                _sComList.value = returnNewComList()//returnNewComListWithoutPairOf(name, false)
             }
         }
     }
 
-    inner class StateStateImpl : StateState {
+    inner class StateStateImpl : MainState.Status {
         override val sBaudRate: State<Int> = _sBaudRate
-        override val sSymbolsCount: State<Int> = _sSymbolsCount
+        override val sTransferredSymbolsCount: State<Int> = _sTransferredSymbolsCount
     }
 
 }

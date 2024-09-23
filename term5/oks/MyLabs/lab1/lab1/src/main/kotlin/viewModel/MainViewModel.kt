@@ -32,11 +32,11 @@ class MainViewModel : ViewModel() {
     private var comReceiver = createComPort(RECEIVER_NAME)
 
     init {
-        setTextIsSenderComOpened()
-        setTextIsReceiverComOpened()
+        updateUiOnSenderComOpening()
+        updateUiOnReceiverComOpening()
     }
 
-    private fun setTextIsSenderComOpened() {
+    private fun updateUiOnSenderComOpening() {
         _sSenderText.value = if (comSender.openPort()) {
             strSuccessful
         } else {
@@ -44,7 +44,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    private fun setTextIsReceiverComOpened() {
+    private fun updateUiOnReceiverComOpening() {
         _sReceiverText.value = if (comReceiver.openPort()) {
             strSuccessful
         } else {
@@ -70,13 +70,13 @@ class MainViewModel : ViewModel() {
         _sSelectedReceiverCom.value = name
         comReceiver.closePort()
         comReceiver = createComPort(name)
-        setTextIsReceiverComOpened()
+        updateUiOnReceiverComOpening()
     }
 
     fun setSelectedSenderCom(name: String) {
         _sSelectedSenderCom.value = name
         comSender.closePort()
         comSender = createComPort(name)
-        setTextIsSenderComOpened()
+        updateUiOnSenderComOpening()
     }
 }
