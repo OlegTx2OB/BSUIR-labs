@@ -65,15 +65,24 @@ class MainViewModel : ViewModel() {
         return comList
     }
 
-    private fun returnNewComListWithoutPairOf(comName: String, isItSenderCom: Boolean): MutableList<String> {
-        val secondComName = if (isItSenderCom) {
-            "COM${comName.filter { it.isDigit() }.toInt() + 1}"
-        } else {
-            "COM${comName.filter { it.isDigit() }.toInt() - 1}"
-        }
+    private fun returnNewComListWithoutComPairs(): MutableList<String> {
         val newList = returnNewComList()
-        newList.remove(comName)
-        newList.remove(secondComName)
+
+        val senderComName = _sSelectedSenderComName.value
+        val receiverComName = _sSelectedReceiverComName.value
+
+        if (senderComName != strNotSelected) {
+            val senderPlusOneComName = "COM${senderComName.filter { it.isDigit() }.toInt() + 1}"
+            newList.remove(senderComName)
+            newList.remove(senderPlusOneComName)
+        }
+
+        if (receiverComName != strNotSelected) {
+            val receiverMinusOneComName = "COM${receiverComName.filter { it.isDigit() }.toInt() - 1}"
+            newList.remove(receiverComName)
+            newList.remove(receiverMinusOneComName)
+        }
+
         return newList
     }
 
@@ -145,7 +154,7 @@ class MainViewModel : ViewModel() {
             viewModelScope.launch(Dispatchers.IO) {
                 comSender = resetCom(comSender, name)
                 updateUiOnSenderComOpening()
-                _sComList.value = returnNewComList()//returnNewComListWithoutPairOf(name, true)
+                _sComList.value = returnNewComListWithoutComPairs()
             }
         }
 
@@ -172,7 +181,7 @@ class MainViewModel : ViewModel() {
                     }
                 })
                 updateUiOnReceiverComOpening()
-                _sComList.value = returnNewComList()//returnNewComListWithoutPairOf(name, false)
+                _sComList.value = returnNewComListWithoutComPairs()
             }
         }
     }

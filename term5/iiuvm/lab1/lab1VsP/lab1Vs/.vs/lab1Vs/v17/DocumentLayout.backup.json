@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MyBatteryInformation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|solutionrelative:MyBatteryInformation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\lab1Vs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|solutionrelative:lab1Vs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MyBatteryInformation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|solutionrelative:MyBatteryInformation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MySleepHibernateMode.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|solutionrelative:MySleepHibernateMode.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MySleepHibernateMode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA2BE8BA-A9AB-4670-8CD5-CD1708C08575}|lab1Vs.vcxproj|solutionrelative:MySleepHibernateMode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MyBatteryInformation.h",
+              "DocumentMoniker": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MyBatteryInformation.h",
+              "RelativeDocumentMoniker": "MyBatteryInformation.h",
+              "ToolTip": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MyBatteryInformation.h",
+              "RelativeToolTip": "MyBatteryInformation.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-14T19:01:23.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "lab1Vs.cpp",
+              "DocumentMoniker": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\lab1Vs.cpp",
+              "RelativeDocumentMoniker": "lab1Vs.cpp",
+              "ToolTip": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\lab1Vs.cpp",
+              "RelativeToolTip": "lab1Vs.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-11T05:34:09.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MySleepHibernateMode.h",
+              "DocumentMoniker": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MySleepHibernateMode.h",
+              "RelativeDocumentMoniker": "MySleepHibernateMode.h",
+              "ToolTip": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MySleepHibernateMode.h",
+              "RelativeToolTip": "MySleepHibernateMode.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-14T19:01:28.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MySleepHibernateMode.cpp",
+              "DocumentMoniker": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MySleepHibernateMode.cpp",
+              "RelativeDocumentMoniker": "MySleepHibernateMode.cpp",
+              "ToolTip": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MySleepHibernateMode.cpp",
+              "RelativeToolTip": "MySleepHibernateMode.cpp",
+              "ViewState": "AgIAADoAAAAAAAAAAAAAADQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-11T05:35:24.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MyBatteryInformation.cpp",
+              "DocumentMoniker": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MyBatteryInformation.cpp",
+              "RelativeDocumentMoniker": "MyBatteryInformation.cpp",
+              "ToolTip": "C:\\Z\\GitHub\\BSUIR-labs\\term5\\iiuvm\\lab1\\lab1VsP\\lab1Vs\\MyBatteryInformation.cpp",
+              "RelativeToolTip": "MyBatteryInformation.cpp",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAIwCAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-11T05:35:07.572Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

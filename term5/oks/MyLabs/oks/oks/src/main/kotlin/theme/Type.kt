@@ -9,7 +9,7 @@ val typography = Typography(
 
     h1 = TextStyle(
         color = lightGray,
-        fontWeight = FontWeight.W500,
+        fontWeight = FontWeight.W600,
         fontSize = sp26,
     ),
 
@@ -22,13 +22,6 @@ val typography = Typography(
     h3 = TextStyle(
         color = lightGray,
         fontWeight = FontWeight.W500,
-        fontSize = sp26,
+        fontSize = sp18,
     ),
-
-    h4 = TextStyle(
-        color = lightGray,
-        fontWeight = FontWeight.W500,
-        fontSize = sp26,
-    ),
-
-    )
+)

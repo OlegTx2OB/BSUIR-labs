@@ -65,7 +65,7 @@ fun InputBox (inputState: MainViewModel.MainState.Input) {
                 )
             )
         } else {
-            Text(strSetSenderCom, modifier = Modifier.padding(top = dp8, start = dp8, end = dp8), style = typography.h1)
+            Text(strSetSenderCom, modifier = Modifier.padding(top = dp8, start = dp8, end = dp8), style = typography.h2)
         }
     }
 }
@@ -90,7 +90,7 @@ fun OutputBox(outputState: MainViewModel.MainState.Output) {
                 )
             }
         } else {
-            Text(strSetReceiverCom, modifier = Modifier.padding(top = dp8, start = dp8, end = dp8), style = typography.h1)
+            Text(strSetReceiverCom, modifier = Modifier.padding(top = dp8, start = dp8, end = dp8), style = typography.h2)
         }
     }
 }
@@ -128,16 +128,23 @@ fun StateBox(statusState: MainViewModel.MainState.Status) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(strStateBox, modifier = Modifier.padding(top = dp8), style = typography.h2)
-        Column(modifier = Modifier.padding(dp8).fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .padding(dp8)
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Text(
                 text = strBaudRate + statusState.sBaudRate.value,
-                modifier = Modifier.weight(1f).padding(top = dp8),
+                modifier = Modifier
+                    .padding(top = dp8),
                 style = typography.h2,
                 textAlign = TextAlign.Center
             )
             Text(
                 text = strSymbolsTransferredCount + statusState.sTransferredSymbolsCount.value,
-                modifier = Modifier.weight(1f).padding(top = dp8),
+                modifier = Modifier
+                    .padding(top = dp8),
                 style = typography.h2,
                 textAlign = TextAlign.Center
             )
@@ -166,7 +173,7 @@ fun ComPortComboBox(
                 value = selectedItem,
                 textStyle = typography.h2,
                 onValueChange = { },
-                label = { Text(hint, style = typography.h4) },
+                label = { Text(hint, style = typography.h3) },
                 readOnly = true,
                 colors = TextFieldDefaults.textFieldColors(
                     textColor = white,
@@ -196,7 +203,7 @@ fun ComPortComboBox(
 
         Text(
             text = isPortOpenedText,
-            style = typography.h3,
+            style = typography.h2,
             modifier = Modifier.weight(1f).padding(start = dp8)
         )
     }
