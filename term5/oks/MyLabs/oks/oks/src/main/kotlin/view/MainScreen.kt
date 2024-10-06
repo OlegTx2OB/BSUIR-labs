@@ -104,7 +104,7 @@ fun ControlBox(controlState: MainViewModel.MainState.Control) {
             controlState.sSelectedSenderComName.value,
             controlState.sComList.value,
             controlState.sSenderComStateText.value,
-            strSenderPortNumber
+            strTransmitterPortNumber
         ) { comName ->
             controlState.setSelectedSenderCom(comName)
         }
