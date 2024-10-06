@@ -2,13 +2,11 @@ package view
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import theme.*
@@ -142,7 +140,7 @@ fun StateBox(statusState: MainViewModel.MainState.Status) {
                 textAlign = TextAlign.Center
             )
             Text(
-                text = strSymbolsTransferredCount + statusState.sTransferredSymbolsCount.value,
+                text = strSymbolsTransmittedCount + statusState.sTransferredSymbolsCount.value,
                 modifier = Modifier
                     .padding(top = dp8),
                 style = typography.h2,

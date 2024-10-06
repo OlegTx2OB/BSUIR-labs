@@ -88,6 +88,7 @@ class MainViewModel : ViewModel() {
 
     private fun sendCharIntoCom(char: Char) {
         comSender!!.outputStream.write(char.code)
+        _sTransferredSymbolsCount.value++
     }
 
     private fun updateUiOnSenderComOpening() {
@@ -122,9 +123,11 @@ class MainViewModel : ViewModel() {
         override val sIsInputTextFieldVisible: State<Boolean> = _sIsInputTextFieldVisible
         
         override fun onTextFieldValueChange(oldText: String, newText: String): String {
+            val regex = Regex("^[a-zA-Z.,!?\\s\\n]*$")
             return if (
-                oldText.isEmpty()
-                || oldText == newText.dropLast(1)
+                (oldText.isEmpty()
+                || oldText == newText.dropLast(1))
+                && regex.matches(newText)
                 ) {
                 viewModelScope.launch(Dispatchers.IO) {
                     sendCharIntoCom(newText.last())
@@ -174,7 +177,6 @@ class MainViewModel : ViewModel() {
                                 val receivedByte = comReceiver!!.inputStream.read()
                                 if (receivedByte != -1) { // Проверяем, что чтение прошло успешно
                                     _sOutputText.value += receivedByte.toChar() // Добавляем полученный символ в строку
-                                    _sTransferredSymbolsCount.value++
                                 }
                             }
                         }
