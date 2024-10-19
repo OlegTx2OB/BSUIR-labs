@@ -4,6 +4,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 //dp sizes
+val dp2 = 2.dp
 val dp8 = 8.dp
 
 //sp sizes

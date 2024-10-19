@@ -75,7 +75,7 @@ fun OutputBox(outputState: MainViewModel.MainState.Output) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(strOutputBox, modifier = Modifier.padding(top = dp8), style = typography.h2)
-        if(outputState.sIsOutputTextVisible.value) {
+        if(outputState.sIsOutputTextFieldVisible.value) {
             val scrollState = rememberScrollState()
             Box(
                 modifier = Modifier.padding(dp8).fillMaxSize().background(transparentBlack).verticalScroll(scrollState)
@@ -135,15 +135,57 @@ fun StateBox(statusState: MainViewModel.MainState.Status) {
             Text(
                 text = strBaudRate + statusState.sBaudRate.value,
                 modifier = Modifier
-                    .padding(top = dp8),
-                style = typography.h2,
+                    .padding(top = dp2),
+                style = typography.h3,
                 textAlign = TextAlign.Center
             )
             Text(
                 text = strSymbolsTransmittedCount + statusState.sTransferredSymbolsCount.value,
                 modifier = Modifier
-                    .padding(top = dp8),
-                style = typography.h2,
+                    .padding(top = dp2),
+                style = typography.h3,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = strStopBits + statusState.sStopBits.value,
+                modifier = Modifier
+                    .padding(top = dp2),
+                style = typography.h3,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = strDataBitsCount + statusState.sDataBits.value,
+                modifier = Modifier
+                    .padding(top = dp2),
+                style = typography.h3,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = strTimeoutMode + statusState.sTimeoutMode.value,
+                modifier = Modifier
+                    .padding(top = dp2),
+                style = typography.h3,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = strWriteTimeOut + statusState.sWriteTimeout.value,
+                modifier = Modifier
+                    .padding(top = dp2),
+                style = typography.h3,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = strReadTimeOut + statusState.sReadTimeout.value,
+                modifier = Modifier
+                    .padding(top = dp2),
+                style = typography.h3,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = strParity + statusState.sParity.value,
+                modifier = Modifier
+                    .padding(top = dp2),
+                style = typography.h3,
                 textAlign = TextAlign.Center
             )
         }

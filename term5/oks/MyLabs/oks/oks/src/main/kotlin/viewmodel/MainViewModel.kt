@@ -12,17 +12,29 @@ import kotlinx.coroutines.launch
 import theme.*
 
 const val BAUD_RATE = 9600
+const val PARITY = SerialPort.NO_PARITY // 0
+const val DATA_BITS = 8
+const val STOP_BITS = SerialPort.ONE_STOP_BIT // 1
+const val TIMEOUT_MODE = SerialPort.TIMEOUT_NONBLOCKING //0
+const val READ_TIMEOUT = 0
+const val WRITE_TIMEOUT = 0
 
 class MainViewModel : ViewModel() {
 
     private val _sIsInputTextFieldVisible = mutableStateOf(false)
-    private val _sIsOutputTextVisible = mutableStateOf(false)
+    private val _sIsOutputTextFieldVisible = mutableStateOf(false)
     private val _sOutputText = mutableStateOf("")
     private val _sSelectedSenderComName = mutableStateOf(strNotSelected)
     private val _sSelectedReceiverComName = mutableStateOf(strNotSelected)
     private val _sSenderComStateText = mutableStateOf(strClear)
     private val _sReceiverComStateText = mutableStateOf(strClear)
     private val _sBaudRate = mutableStateOf(BAUD_RATE)
+    private val _sStopBits = mutableStateOf(STOP_BITS)
+    private val _sDataBits = mutableStateOf(DATA_BITS)
+    private val _sParity = mutableStateOf(PARITY)
+    private val _sTimeoutMode = mutableStateOf(TIMEOUT_MODE)
+    private val _sReadTimeout = mutableStateOf(READ_TIMEOUT)
+    private val _sWriteTimeout = mutableStateOf(WRITE_TIMEOUT)
     private val _sTransferredSymbolsCount = mutableStateOf(0)
     private val _sComList = mutableStateOf(returnNewComList())
 
@@ -37,7 +49,7 @@ class MainViewModel : ViewModel() {
             fun onTextFieldValueChange(oldText: String, newText: String): String
         }
         sealed interface Output {
-            val sIsOutputTextVisible: State<Boolean>
+            val sIsOutputTextFieldVisible: State<Boolean>
             val sOutputText: State<String>
         }
         sealed interface Control {
@@ -52,6 +64,12 @@ class MainViewModel : ViewModel() {
         }
         sealed interface Status {
             val sBaudRate: State<Int>
+            val sDataBits: State<Int>
+            val sStopBits: State<Int>
+            val sParity: State<Int>
+            val sTimeoutMode: State<Int>
+            val sReadTimeout: State<Int>
+            val sWriteTimeout: State<Int>
             val sTransferredSymbolsCount: State<Int>
         }
     }
@@ -103,10 +121,10 @@ class MainViewModel : ViewModel() {
 
     private fun updateUiOnReceiverComOpening() {
         if (comReceiver!!.isOpen) {
-            _sIsOutputTextVisible.value = true
+            _sIsOutputTextFieldVisible.value = true
             _sReceiverComStateText.value = strSuccessful
         } else {
-            _sIsOutputTextVisible.value = false
+            _sIsOutputTextFieldVisible.value = false
             _sReceiverComStateText.value = strFailed
         }
     }
@@ -115,7 +133,16 @@ class MainViewModel : ViewModel() {
         com?.closePort()
         val newCom = SerialPort.getCommPort(newName)
         newCom.baudRate = _sBaudRate.value
+        newCom.parity = _sParity.value
+        newCom.numDataBits = _sDataBits.value
+        newCom.numStopBits = _sStopBits.value
+        newCom.setComPortTimeouts(
+            _sTimeoutMode.value,
+            _sReadTimeout.value,
+            _sWriteTimeout.value
+        )
         newCom.openPort()
+
         return newCom
     }
 
@@ -140,7 +167,7 @@ class MainViewModel : ViewModel() {
     }
 
     inner class OutputStateImpl : MainState.Output {
-        override val sIsOutputTextVisible: State<Boolean> = _sIsOutputTextVisible
+        override val sIsOutputTextFieldVisible: State<Boolean> = _sIsOutputTextFieldVisible
         override val sOutputText: State<String> = _sOutputText
     }
 
@@ -189,7 +216,13 @@ class MainViewModel : ViewModel() {
     }
 
     inner class StateStateImpl : MainState.Status {
+        override val sStopBits: State<Int> = _sStopBits
+        override val sDataBits: State<Int> = _sDataBits
+        override val sParity: State<Int> = _sParity
         override val sBaudRate: State<Int> = _sBaudRate
+        override val sTimeoutMode: State<Int> = _sTimeoutMode
+        override val sReadTimeout: State<Int> = _sReadTimeout
+        override val sWriteTimeout: State<Int> = _sWriteTimeout
         override val sTransferredSymbolsCount: State<Int> = _sTransferredSymbolsCount
     }
 
