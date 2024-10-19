@@ -5,21 +5,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fazecast.jSerialComm.SerialPort
-import com.fazecast.jSerialComm.SerialPortDataListener
-import com.fazecast.jSerialComm.SerialPortEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import theme.*
+import usecases.ObserveReceivedDataUseCase
+import usecases.TryTransmitDataUseCase
+import util.bitStuffSymbol
 
-const val BAUD_RATE = 9600
-const val PARITY = SerialPort.NO_PARITY // 0
-const val DATA_BITS = 8
-const val STOP_BITS = SerialPort.ONE_STOP_BIT // 1
-const val TIMEOUT_MODE = SerialPort.TIMEOUT_NONBLOCKING //0
-const val READ_TIMEOUT = 0
-const val WRITE_TIMEOUT = 0
-
-class MainViewModel : ViewModel() {
+class MainViewModel(
+    private val tryTransmitDataUseCase: TryTransmitDataUseCase = TryTransmitDataUseCase(),
+    private val observeReceivedDataUseCase: ObserveReceivedDataUseCase = ObserveReceivedDataUseCase(),
+) : ViewModel() {
 
     private val _sIsInputTextFieldVisible = mutableStateOf(false)
     private val _sIsOutputTextFieldVisible = mutableStateOf(false)
@@ -36,11 +32,11 @@ class MainViewModel : ViewModel() {
     private val _sReadTimeout = mutableStateOf(READ_TIMEOUT)
     private val _sWriteTimeout = mutableStateOf(WRITE_TIMEOUT)
     private val _sTransferredSymbolsCount = mutableStateOf(0)
+    private val _sCurrentPackageString = mutableStateOf(strNa)
     private val _sComList = mutableStateOf(returnNewComList())
 
     private var comSender: SerialPort? = null
     private var comReceiver: SerialPort? = null
-
 
     sealed interface MainState {
         sealed interface Input {
@@ -71,14 +67,104 @@ class MainViewModel : ViewModel() {
             val sReadTimeout: State<Int>
             val sWriteTimeout: State<Int>
             val sTransferredSymbolsCount: State<Int>
+            val sCurrentPackageString: State<String>
         }
     }
 
+    inner class InputStateImpl : MainState.Input {
+        override val sIsInputTextFieldVisible: State<Boolean> = _sIsInputTextFieldVisible
+
+        override fun onTextFieldValueChange(oldText: String, newText: String): String {
+            val regex = Regex("^[01\\n]*$")
+            return if (
+                (oldText.isEmpty()
+                || oldText == newText.dropLast(1))
+                && regex.matches(newText)
+                ) {
+                viewModelScope.launch(Dispatchers.IO) {
+                    val result = tryTransmitDataUseCase(newText, _sSelectedSenderComName.value, comSender)
+                    if (result.first) {
+                        _sTransferredSymbolsCount.value += result.second.length
+                        _sCurrentPackageString.value = transformStringWithFlagsAndNewLines(result.second)
+                    }
+                }
+                newText
+            } else {
+                oldText
+            }
+        }
+    }
+
+    inner class OutputStateImpl : MainState.Output {
+        override val sIsOutputTextFieldVisible: State<Boolean> = _sIsOutputTextFieldVisible
+        override val sOutputText: State<String> = _sOutputText
+    }
+
+    inner class ControlStateImpl : MainState.Control {
+        override val sSelectedSenderComName: State<String> = _sSelectedSenderComName
+        override val sSelectedReceiverComName: State<String> = _sSelectedReceiverComName
+        override val sSenderComStateText: State<String> = _sSenderComStateText
+        override val sReceiverComStateText: State<String> = _sReceiverComStateText
+        override val sComList: State<List<String>> = _sComList
+
+        override fun setSelectedSenderCom(name: String) {
+            _sSenderComStateText.value = strLoading
+            _sSelectedSenderComName.value = name
+            viewModelScope.launch(Dispatchers.IO) {
+                comSender = resetCom(comSender, name)
+                updateUiOnSenderComOpening()
+                _sComList.value = returnNewComListWithoutComPairs()
+            }
+        }
+
+        override fun setSelectedReceiverCom(name: String) {
+            _sReceiverComStateText.value = strLoading
+            _sSelectedReceiverComName.value = name
+            viewModelScope.launch(Dispatchers.IO) {
+                comReceiver = resetCom(comReceiver, name)
+                observeReceivedDataUseCase(name, comReceiver!!) { newString ->
+                    _sOutputText.value += newString
+                }
+                updateUiOnReceiverComOpening()
+                _sComList.value = returnNewComListWithoutComPairs()
+            }
+        }
+    }
+
+    inner class StateStateImpl : MainState.Status {
+        override val sStopBits: State<Int> = _sStopBits
+        override val sDataBits: State<Int> = _sDataBits
+        override val sParity: State<Int> = _sParity
+        override val sBaudRate: State<Int> = _sBaudRate
+        override val sTimeoutMode: State<Int> = _sTimeoutMode
+        override val sReadTimeout: State<Int> = _sReadTimeout
+        override val sWriteTimeout: State<Int> = _sWriteTimeout
+        override val sTransferredSymbolsCount: State<Int> = _sTransferredSymbolsCount
+        override val sCurrentPackageString: State<String> = _sCurrentPackageString
+    }
+
+    private fun transformStringWithFlagsAndNewLines(string: String): String {
+        val newLinesReplacedString = string.replace("\n", "\\n")
+        var matchCount = 0
+        return newLinesReplacedString.replace(
+            "$FLAG_FOR_BITSTUFF${bitStuffSymbol()}".toRegex()
+        ) { matchResult ->
+            matchCount++
+            if (matchCount > 1) {
+                matchResult.value.replace(
+                    "${bitStuffSymbol()}$".toRegex(),
+                    "|${bitStuffSymbol()}|"
+                )
+            } else {
+                matchResult.value
+            }
+        }
+    }
 
     private fun returnNewComList(): MutableList<String> {
         val comList = mutableListOf<String>()
-        for (i in 1..255) {
-            comList.add("COM$i")
+        for (i in 1..15) {
+            comList.add("$stcCom$i")
         }
         return comList
     }
@@ -90,23 +176,18 @@ class MainViewModel : ViewModel() {
         val receiverComName = _sSelectedReceiverComName.value
 
         if (senderComName != strNotSelected) {
-            val senderPlusOneComName = "COM${senderComName.filter { it.isDigit() }.toInt() + 1}"
+            val senderPlusOneComName = "$stcCom${senderComName.filter { it.isDigit() }.toInt() + 1}"
             newList.remove(senderComName)
             newList.remove(senderPlusOneComName)
         }
 
         if (receiverComName != strNotSelected) {
-            val receiverMinusOneComName = "COM${receiverComName.filter { it.isDigit() }.toInt() - 1}"
+            val receiverMinusOneComName = "$stcCom${receiverComName.filter { it.isDigit() }.toInt() - 1}"
             newList.remove(receiverComName)
             newList.remove(receiverMinusOneComName)
         }
 
         return newList
-    }
-
-    private fun sendCharIntoCom(char: Char) {
-        comSender!!.outputStream.write(char.code)
-        _sTransferredSymbolsCount.value++
     }
 
     private fun updateUiOnSenderComOpening() {
@@ -146,85 +227,4 @@ class MainViewModel : ViewModel() {
         return newCom
     }
 
-    inner class InputStateImpl : MainState.Input {
-        override val sIsInputTextFieldVisible: State<Boolean> = _sIsInputTextFieldVisible
-        
-        override fun onTextFieldValueChange(oldText: String, newText: String): String {
-            val regex = Regex("^[a-zA-Z.,!?\\s\\n]*$")
-            return if (
-                (oldText.isEmpty()
-                || oldText == newText.dropLast(1))
-                && regex.matches(newText)
-                ) {
-                viewModelScope.launch(Dispatchers.IO) {
-                    sendCharIntoCom(newText.last())
-                }
-                newText
-            } else {
-                oldText
-            }
-        }
-    }
-
-    inner class OutputStateImpl : MainState.Output {
-        override val sIsOutputTextFieldVisible: State<Boolean> = _sIsOutputTextFieldVisible
-        override val sOutputText: State<String> = _sOutputText
-    }
-
-    inner class ControlStateImpl : MainState.Control {
-        override val sSelectedSenderComName: State<String> = _sSelectedSenderComName
-        override val sSelectedReceiverComName: State<String> = _sSelectedReceiverComName
-        override val sSenderComStateText: State<String> = _sSenderComStateText
-        override val sReceiverComStateText: State<String> = _sReceiverComStateText
-        override val sComList: State<List<String>> = _sComList
-
-        override fun setSelectedSenderCom(name: String) {
-            _sSenderComStateText.value = strLoading
-            _sSelectedSenderComName.value = name
-            viewModelScope.launch(Dispatchers.IO) {
-                comSender = resetCom(comSender, name)
-                updateUiOnSenderComOpening()
-                _sComList.value = returnNewComListWithoutComPairs()
-            }
-        }
-
-        override fun setSelectedReceiverCom(name: String) {
-            _sReceiverComStateText.value = strLoading
-            _sSelectedReceiverComName.value = name
-            viewModelScope.launch(Dispatchers.IO) {
-                comReceiver = resetCom(comReceiver, name)
-                comReceiver!!.addDataListener(object : SerialPortDataListener {
-                    override fun getListeningEvents(): Int {
-                        return SerialPort.LISTENING_EVENT_DATA_AVAILABLE
-                    }
-
-                    override fun serialEvent(event: SerialPortEvent) {
-                        if (event.eventType == SerialPort.LISTENING_EVENT_DATA_AVAILABLE) {
-                            while (comReceiver!!.bytesAvailable() > 0) {
-                                val receivedByte = comReceiver!!.inputStream.read()
-                                if (receivedByte != -1) { // Проверяем, что чтение прошло успешно
-                                    _sOutputText.value += receivedByte.toChar() // Добавляем полученный символ в строку
-                                }
-                            }
-                        }
-                    }
-                })
-                updateUiOnReceiverComOpening()
-                _sComList.value = returnNewComListWithoutComPairs()
-            }
-        }
-    }
-
-    inner class StateStateImpl : MainState.Status {
-        override val sStopBits: State<Int> = _sStopBits
-        override val sDataBits: State<Int> = _sDataBits
-        override val sParity: State<Int> = _sParity
-        override val sBaudRate: State<Int> = _sBaudRate
-        override val sTimeoutMode: State<Int> = _sTimeoutMode
-        override val sReadTimeout: State<Int> = _sReadTimeout
-        override val sWriteTimeout: State<Int> = _sWriteTimeout
-        override val sTransferredSymbolsCount: State<Int> = _sTransferredSymbolsCount
-    }
-
 }
-

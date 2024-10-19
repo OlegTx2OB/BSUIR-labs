@@ -121,77 +121,39 @@ fun ControlBox(controlState: MainViewModel.MainState.Control) {
 
 @Composable
 fun StateBox(statusState: MainViewModel.MainState.Status) {
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier.fillMaxSize().background(lightPeach),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(strStateBox, modifier = Modifier.padding(top = dp8), style = typography.h2)
         Column(
-            modifier = Modifier
-                .padding(dp8)
-                .fillMaxSize(),
+            modifier = Modifier.padding(dp8).fillMaxSize().verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = strBaudRate + statusState.sBaudRate.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = strSymbolsTransmittedCount + statusState.sTransferredSymbolsCount.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = strStopBits + statusState.sStopBits.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = strDataBitsCount + statusState.sDataBits.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = strTimeoutMode + statusState.sTimeoutMode.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = strWriteTimeOut + statusState.sWriteTimeout.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = strReadTimeOut + statusState.sReadTimeout.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = strParity + statusState.sParity.value,
-                modifier = Modifier
-                    .padding(top = dp2),
-                style = typography.h3,
-                textAlign = TextAlign.Center
-            )
+            TextH3CenterPaddingTop2(text = strCurrentPackageStructure + statusState.sCurrentPackageString.value)
+            TextH3CenterPaddingTop2(text = strBaudRate + statusState.sBaudRate.value)
+            TextH3CenterPaddingTop2(text = strSymbolsTransmittedCount + statusState.sTransferredSymbolsCount.value)
+            TextH3CenterPaddingTop2(text = strStopBits + statusState.sStopBits.value)
+            TextH3CenterPaddingTop2(text = strDataBitsCount + statusState.sDataBits.value)
+            TextH3CenterPaddingTop2(text = strTimeoutMode + statusState.sTimeoutMode.value)
+            TextH3CenterPaddingTop2(text = strWriteTimeOut + statusState.sWriteTimeout.value)
+            TextH3CenterPaddingTop2(text = strReadTimeOut + statusState.sReadTimeout.value)
+            TextH3CenterPaddingTop2(text = strParity + statusState.sParity.value)
         }
     }
 }
 
+@Composable
+fun TextH3CenterPaddingTop2(text: String) {
+    Text(
+        text = text,
+        modifier = Modifier.padding(top = dp2),
+        style = typography.h3,
+        textAlign = TextAlign.Center
+    )
+}
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

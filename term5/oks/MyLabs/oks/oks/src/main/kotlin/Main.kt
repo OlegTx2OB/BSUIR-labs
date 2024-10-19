@@ -1,9 +1,7 @@
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import androidx.compose.ui.window.rememberWindowState
 import androidx.lifecycle.viewmodel.compose.viewModel
 import theme.strAppName
 import view.MainScreen
