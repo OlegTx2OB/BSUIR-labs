@@ -14,21 +14,23 @@ import viewmodel.MainViewModel
 
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
+    val mainStateImpl = viewModel.MainStateImpl()
+
     Column(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.weight(1f)) {
             Column(modifier = Modifier.weight(1f)) {
-                InputBox(inputState = viewModel.InputStateImpl())
+                InputBox(inputState = mainStateImpl.InputImpl())
             }
             Column(modifier = Modifier.weight(1f)) {
-                OutputBox(outputState = viewModel.OutputStateImpl())
+                OutputBox(outputState = mainStateImpl.OutputImpl())
             }
         }
         Row(modifier = Modifier.weight(1f)) {
             Column(modifier = Modifier.weight(1f)) {
-                ControlBox(controlState = viewModel.ControlStateImpl())
+                ControlBox(controlState = mainStateImpl.ControlImpl())
             }
             Column(modifier = Modifier.weight(1f)) {
-                StateBox(statusState = viewModel.StateStateImpl())
+                StateBox(statusState = mainStateImpl.StateImpl())
             }
         }
     }

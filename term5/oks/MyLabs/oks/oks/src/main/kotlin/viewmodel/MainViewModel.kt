@@ -71,94 +71,109 @@ class MainViewModel(
         }
     }
 
-    inner class InputStateImpl : MainState.Input {
-        override val sIsInputTextFieldVisible: State<Boolean> = _sIsInputTextFieldVisible
+    inner class MainStateImpl {
+        inner class InputImpl : MainState.Input {
+            override val sIsInputTextFieldVisible: State<Boolean> = _sIsInputTextFieldVisible
 
-        override fun onTextFieldValueChange(oldText: String, newText: String): String {
-            val regex = Regex("^[01\\n]*$")
-            return if (
-                (oldText.isEmpty()
-                || oldText == newText.dropLast(1))
-                && regex.matches(newText)
+            override fun onTextFieldValueChange(oldText: String, newText: String): String {
+                val regex = Regex("^[01\\n]*$")
+                return if (
+                    (oldText.isEmpty()
+                    || oldText == newText.dropLast(1))
+                    && regex.matches(newText)
                 ) {
-                viewModelScope.launch(Dispatchers.IO) {
-                    val result = tryTransmitDataUseCase(newText, _sSelectedSenderComName.value, comSender)
-                    if (result.first) {
-                        _sTransferredSymbolsCount.value += result.second.length
-                        _sCurrentPackageString.value = transformStringWithFlagsAndNewLines(result.second)
+                    viewModelScope.launch(Dispatchers.IO) {
+                        val result = tryTransmitDataUseCase(newText, _sSelectedSenderComName.value, comSender)
+                        if (result.first) {
+                            _sTransferredSymbolsCount.value += result.second.length
+                            _sCurrentPackageString.value = transformStringWithFlagsAndNewLines(result.second)
+                        }
                     }
+                    newText
+                } else {
+                    oldText
                 }
-                newText
-            } else {
-                oldText
-            }
-        }
-    }
-
-    inner class OutputStateImpl : MainState.Output {
-        override val sIsOutputTextFieldVisible: State<Boolean> = _sIsOutputTextFieldVisible
-        override val sOutputText: State<String> = _sOutputText
-    }
-
-    inner class ControlStateImpl : MainState.Control {
-        override val sSelectedSenderComName: State<String> = _sSelectedSenderComName
-        override val sSelectedReceiverComName: State<String> = _sSelectedReceiverComName
-        override val sSenderComStateText: State<String> = _sSenderComStateText
-        override val sReceiverComStateText: State<String> = _sReceiverComStateText
-        override val sComList: State<List<String>> = _sComList
-
-        override fun setSelectedSenderCom(name: String) {
-            _sSenderComStateText.value = strLoading
-            _sSelectedSenderComName.value = name
-            viewModelScope.launch(Dispatchers.IO) {
-                comSender = resetCom(comSender, name)
-                updateUiOnSenderComOpening()
-                _sComList.value = returnNewComListWithoutComPairs()
             }
         }
 
-        override fun setSelectedReceiverCom(name: String) {
-            _sReceiverComStateText.value = strLoading
-            _sSelectedReceiverComName.value = name
-            viewModelScope.launch(Dispatchers.IO) {
-                comReceiver = resetCom(comReceiver, name)
-                observeReceivedDataUseCase(name, comReceiver!!) { newString ->
-                    _sOutputText.value += newString
+        inner class OutputImpl : MainState.Output {
+            override val sIsOutputTextFieldVisible: State<Boolean> = _sIsOutputTextFieldVisible
+            override val sOutputText: State<String> = _sOutputText
+        }
+
+        inner class ControlImpl : MainState.Control {
+            override val sSelectedSenderComName: State<String> = _sSelectedSenderComName
+            override val sSelectedReceiverComName: State<String> = _sSelectedReceiverComName
+            override val sSenderComStateText: State<String> = _sSenderComStateText
+            override val sReceiverComStateText: State<String> = _sReceiverComStateText
+            override val sComList: State<List<String>> = _sComList
+
+            override fun setSelectedSenderCom(name: String) {
+                _sSenderComStateText.value = strLoading
+                _sSelectedSenderComName.value = name
+                viewModelScope.launch(Dispatchers.IO) {
+                    comSender = resetCom(comSender, name)
+                    updateUiOnSenderComOpening()
+                    _sComList.value = returnNewComListWithoutComPairs()
                 }
-                updateUiOnReceiverComOpening()
-                _sComList.value = returnNewComListWithoutComPairs()
+            }
+
+            override fun setSelectedReceiverCom(name: String) {
+                _sReceiverComStateText.value = strLoading
+                _sSelectedReceiverComName.value = name
+                viewModelScope.launch(Dispatchers.IO) {
+                    comReceiver = resetCom(comReceiver, name)
+                    observeReceivedDataUseCase(comReceiver!!) { newString ->
+                        _sOutputText.value += newString
+                    }
+                    updateUiOnReceiverComOpening()
+                    _sComList.value = returnNewComListWithoutComPairs()
+                }
             }
         }
-    }
 
-    inner class StateStateImpl : MainState.Status {
-        override val sStopBits: State<Int> = _sStopBits
-        override val sDataBits: State<Int> = _sDataBits
-        override val sParity: State<Int> = _sParity
-        override val sBaudRate: State<Int> = _sBaudRate
-        override val sTimeoutMode: State<Int> = _sTimeoutMode
-        override val sReadTimeout: State<Int> = _sReadTimeout
-        override val sWriteTimeout: State<Int> = _sWriteTimeout
-        override val sTransferredSymbolsCount: State<Int> = _sTransferredSymbolsCount
-        override val sCurrentPackageString: State<String> = _sCurrentPackageString
+        inner class StateImpl : MainState.Status {
+            override val sStopBits: State<Int> = _sStopBits
+            override val sDataBits: State<Int> = _sDataBits
+            override val sParity: State<Int> = _sParity
+            override val sBaudRate: State<Int> = _sBaudRate
+            override val sTimeoutMode: State<Int> = _sTimeoutMode
+            override val sReadTimeout: State<Int> = _sReadTimeout
+            override val sWriteTimeout: State<Int> = _sWriteTimeout
+            override val sTransferredSymbolsCount: State<Int> = _sTransferredSymbolsCount
+            override val sCurrentPackageString: State<String> = _sCurrentPackageString
+        }
     }
 
     private fun transformStringWithFlagsAndNewLines(string: String): String {
         val newLinesReplacedString = string.replace("\n", "\\n")
         var matchCount = 0
-        return newLinesReplacedString.replace(
+
+        val stringWithHighlightedBitstuff = newLinesReplacedString.replace(
             "$FLAG_FOR_BITSTUFF${bitStuffSymbol()}".toRegex()
         ) { matchResult ->
             matchCount++
             if (matchCount > 1) {
                 matchResult.value.replace(
                     "${bitStuffSymbol()}$".toRegex(),
-                    "|${bitStuffSymbol()}|"
+                    "$BITSTUFF_SEPARATOR${bitStuffSymbol()}$BITSTUFF_SEPARATOR"
                 )
             } else {
                 matchResult.value
             }
         }
+
+        val stringWithSeparationBeforeHamming = stringWithHighlightedBitstuff.run {
+            var symbolsCountBeforeSeparation = HAMMING_BITS_COUNT
+            if (stringWithHighlightedBitstuff.takeLast(HAMMING_BITS_COUNT).contains(BITSTUFF_SEPARATOR)) {
+                symbolsCountBeforeSeparation += 2
+            }
+            this.take(this.length - symbolsCountBeforeSeparation) +
+                    HAMMING_SEPARATOR +
+                    this.drop(this.length - symbolsCountBeforeSeparation)
+        }
+
+        return stringWithSeparationBeforeHamming
     }
 
     private fun returnNewComList(): MutableList<String> {
